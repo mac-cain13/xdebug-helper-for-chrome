@@ -5,8 +5,8 @@ Debugging and profiling PHP code with [Xdebug](http://xdebug.org/) is very power
 setting a cookie or adding POST/GET variables is unnecessary hard. This extension will
 help you to enable/disable debugging and profiling with a single click.
 
-Howto install this extension?
------------------------------
+How to install this extension?
+------------------------------
 The easiest and recommended way is to go to the [Google Chrome Web Store](https://chrome.google.com/webstore/detail/eadndfjplgieldjbigjakmdgkmoaaaoc)
 and install the latest stable version from there.
 
