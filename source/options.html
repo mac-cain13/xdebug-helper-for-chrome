@@ -23,6 +23,15 @@
 			margin: 0 0 -15px 0;
 		}
 
+		a {
+			color: inherit;
+			text-decoration: inherit;
+		}
+
+		a span {
+			text-decoration: underline;
+		}
+
 		a.txtlink {
 			text-decoration: none;
 			border-bottom: 1px dotted #356816;
@@ -139,7 +148,7 @@
 			</p>
 
 			<h3>Domain filter</h3>
-			<p class="note">Here you can whitelist domains you want to be able to debug and profile. By default we show the icon on all pages.</p>
+			<p class="note">By default we show the bug icon on all pages, but here you can whitelist domains where the icon should show up. Note that all filters are regular expressions.</p>
 			<p><input type="text" value="" id="newSite">
 			<a id='add-site'><img id="addButton" src="images/add.png" alt="Add" title="Add" /></a>
 			<br/>
@@ -147,14 +156,14 @@
 			<a id='remove-site'><img id="removeButton" src="images/delete.png" alt="Remove selected" title="Remove selected" /></a>
 			</p>
 
-			<p id="hint"><img src="images/lightbulb.png" alt="Tip!" title="Tip!" /> Filters are regular expressions</p>
+			<p id="hint"><img src="images/lightbulb.png" alt="Tip!" title="Tip!" /> <a href="http://blog.wrep.nl/post/31720573340/xdebug-helper-for-chrome-how-to-use-the-domain-filter" target="_blank">Need help? Read our <span>blogpost</span>!</a></p>
 		</div>
 
 		<div id="footer">
 			<a href="https://github.com/wrep/xdebug-helper-for-chrome" class="contribute" target="_blank">
 				Feel free to submit ideas, bugs and pull request to our <span>Github project</span>
 			</a>
-			<a href="http://www.wrep.nl/"><img src="images/logo.png" alt="Crafted by Wrep" title="Crafted by Wrep" /></a>
+			<a href="http://www.wrep.nl/" target="_blank"><img src="images/logo.png" alt="Crafted by Wrep" title="Crafted by Wrep" /></a>
 		</div>
 	</body>
 </html>
