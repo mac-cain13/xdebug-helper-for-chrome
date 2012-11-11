@@ -1,5 +1,5 @@
 
-function save_options() 
+function save_options()
 {
 	input = document.getElementById("idekey");
 	idekey = input.value;
@@ -35,24 +35,27 @@ function restore_options()
 	$('#idekey').val(idekey);
 
 	sites = localStorage["sites"];
-	sites = JSON.parse(sites);
-	for(i = 0; i < sites.length; i++)
+	if (sites)
 	{
-		addItem("siteBox", sites[i]);
+		sites = JSON.parse(sites);
+		for(i = 0; i < sites.length; i++)
+		{
+			addItem("siteBox", sites[i]);
+		}
 	}
 }
 
-function addSite() 
+function addSite()
 {
 	siteText = document.getElementById("newSite").value;
 	addItem("siteBox", siteText);
 	save_options();
 	document.getElementById("newSite").value = '';
-	
+
 	save_options();
 }
 
-function removeSelectedSite() 
+function removeSelectedSite()
 {
 	siteBox = document.getElementById("siteBox");
 	for (i = siteBox.length-1; i >= 0; i--) {
@@ -73,35 +76,37 @@ function addItem(id, value)
 	opt.text = value;
 }
 
-$(document).ready(function() 
+$(document).ready(function()
 {
-	$("#ide").change(function () 
+	$("#ide").change(function ()
 	{
-		if ($("#ide").val() != "null") 
+		if ($("#ide").val() != "null")
 		{
 			$("#customkey").fadeOut();
 			$("#idekey").val($("#ide").val());
-			
+
 			 save_options();
-		} 
-		else 
+		}
+		else
 		{
 			$("#customkey").fadeIn();
 		}
 	});
-	
-	$("#idekey").change(function() 
+
+	$("#idekey").change(function()
 	{
 		save_options();
 	});
-	
-	$('#add-site').click(function(){
+
+	$('#add-site').click(function()
+	{
 		addSite();
 	});
-	
-	$('#remove-site').click(function(){
+
+	$('#remove-site').click(function()
+	{
 		removeSelectedSite();
 	});
-	
+
 	restore_options();
 });
