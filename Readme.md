@@ -1,9 +1,9 @@
 XDebug Helper for Google Chrome
 ===============================
 
-Debugging and profiling PHP code with [Xdebug](http://xdebug.org/) is very powerful, but enabling Xdebug by
-setting a cookie or adding POST/GET variables is unnecessary hard. This extension will
-help you to enable/disable debugging and profiling with a single click.
+Debugging, profiling and tracing PHP code with [Xdebug](http://xdebug.org/) is very powerful, but enabling
+Xdebug by setting a cookie or adding POST/GET variables is unnecessary hard. This extension will
+help you to enable/disable the debugging, profiling and tracing features with a single click.
 
 How to install this extension?
 ------------------------------
