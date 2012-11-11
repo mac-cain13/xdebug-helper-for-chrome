@@ -7,6 +7,10 @@
 				chrome.tabs.getSelected(null, function(tab)
 				{
 					sites = localStorage["sites"];
+					if (!sites)
+					{
+						sites = "[]";
+					}
 					sites = JSON.parse(sites);
 
 					baseDomain = tab.url.match(/:\/\/(.[^/]+)/)[1];

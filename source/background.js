@@ -2,12 +2,16 @@ chrome.tabs.onUpdated.addListener(function(tabid)
 {
 	chrome.tabs.getSelected(null, function(tab)
 	{
-		if (!localStorage || !localStorage['sites'])
+		if (!localStorage)
 		{
 			return;
 		}
 
 		sites = localStorage["sites"];
+		if (!sites)
+		{
+			sites = "[]";
+		}
 		sites = JSON.parse(sites);
 
 		baseDomain = tab.url.match(/:\/\/(.[^/]+)/)[1];
