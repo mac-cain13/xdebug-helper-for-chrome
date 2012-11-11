@@ -32,7 +32,7 @@ function xdebugCheckStatus()
     }
     else if (xdebugGetCookie('XDEBUG_TRACE') == idekey)
     {
-      return 3;
+        return 3;
     }
 
     return 0;
@@ -75,11 +75,11 @@ function xdebugToggle()
     return xdebugCheckStatus();
 }
 
-function xdebugSetCookie(cookieName, cookieVal,minutes)
+function xdebugSetCookie(cookieName, cookieVal, minutes)
 {
-    var exp=new Date();
-    exp.setTime(exp.getTime()+(minutes*60*1000));
-    document.cookie=cookieName+"="+cookieVal+"; expires="+exp.toGMTString()+"; path=/";
+    var exp = new Date();
+    exp.setTime(exp.getTime() + (minutes * 60 * 1000));
+    document.cookie = cookieName + "=" + cookieVal + "; expires=" + exp.toGMTString() + "; path=/";
 }
 
 function xdebugGetCookie(name)

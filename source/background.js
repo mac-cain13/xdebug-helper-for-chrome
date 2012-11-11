@@ -2,11 +2,12 @@ chrome.tabs.onUpdated.addListener(function(tabid)
 {
 	chrome.tabs.getSelected(null, function(tab)
 	{
-		if (!localStorage || !localStorage['sites']) {
+		if (!localStorage || !localStorage['sites'])
+		{
 			return;
 		}
-		sites = localStorage["sites"];
 
+		sites = localStorage["sites"];
 		sites = JSON.parse(sites);
 
 		baseDomain = tab.url.match(/:\/\/(.[^/]+)/)[1];
@@ -42,7 +43,8 @@ chrome.pageAction.onClicked.addListener(function(tab)
 			{
 				cmd: "toggle", idekey: localStorage["xdebugIdeKey"]
 			},
-			function(response){
+			function(response)
+			{
 				updateIcon(response.result, tab.id);
 			}
 		);
