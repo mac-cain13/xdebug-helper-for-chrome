@@ -6,13 +6,13 @@ chrome.tabs.onUpdated.addListener(function(tabid)
 			return;
 		}
 		sites = localStorage["sites"];
-		
+
 		sites = JSON.parse(sites);
 
 		baseDomain = tab.url.match(/:\/\/(.[^/]+)/)[1];
 
 		match = isValueInArray(sites, baseDomain);
-		
+
 		if (match || sites.length == 0)
 		{
 			chrome.pageAction.show(tabid);
@@ -23,7 +23,7 @@ chrome.tabs.onUpdated.addListener(function(tabid)
 					{
 						cmd: "status", idekey: localStorage["xdebugIdeKey"]
 					},
-					function(response) 
+					function(response)
 					{
 						updateIcon(response.result, tabid);
 					}
@@ -51,7 +51,7 @@ chrome.pageAction.onClicked.addListener(function(tab)
 
 function updateIcon(status, tabid)
 {
-	if (status == 1) 
+	if (status == 1)
 	{
 		chrome.pageAction.setTitle({
 			tabId: tabid,
@@ -62,8 +62,8 @@ function updateIcon(status, tabid)
 			tabId: tabid,
 			 path: "images/bug.png"
 		});
-	} 
-	else if (status == 2) 
+	}
+	else if (status == 2)
 	{
 		chrome.pageAction.setTitle({
 			tabId: tabid,
@@ -74,12 +74,24 @@ function updateIcon(status, tabid)
 			tabId: tabid,
 			 path: "images/clock.png"
 		});
-	} 
-	else 
+	}
+	else if (status == 3)
+	{
+	  chrome.pageAction.setTitle({
+		tabId: tabid,
+		title: "Tracing enabled"
+	  });
+
+	  chrome.pageAction.setIcon({
+		tabId: tabid,
+		path: "images/script-save.png"
+	  });
+	}
+	else
 	{
 		chrome.pageAction.setTitle({
 			tabId: tabid,
-			title: "Debugging & profiling disabled"
+			title: "Debugging, profiling & tracing disabled"
 		});
 
 		chrome.pageAction.setIcon({
@@ -89,7 +101,7 @@ function updateIcon(status, tabid)
 	}
 }
 
-function isValueInArray(arr, val) 
+function isValueInArray(arr, val)
 {
 	for (i = 0; i < arr.length; i++)
 	{
@@ -99,6 +111,6 @@ function isValueInArray(arr, val)
 			return true;
 		}
 	}
-	
+
 	return false;
 }
