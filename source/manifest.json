@@ -1,25 +1,25 @@
 {
-   "background": {
-        "scripts":["background.js"]
-    },
-   "content_scripts": [ {
-      "js": [ "content.js" ],
-      "matches": [ "http://*/*", "https://*/*" ]
-   } ],
-   "description": "One-click debugging, profiling and tracing extension for Xdebug",
-   "icons": {
-      "128": "images/icon-128.png",
-      "16": "images/icon-16.png",
-      "48": "images/icon-48.png"
-   },
-   "manifest_version": 2,
-   "name": "Xdebug helper",
-   "options_page": "options.html",
-   "page_action": {
-      "default_icon": "images/bug-gray.png",
-      "default_title": "Debugging, profiling & tracing disabled"
-   },
-   "permissions": [ "tabs", "http://*/*", "https://*/*" ],
-   "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.2.0"
+	"background": {
+		"scripts":["background.js"]
+	},
+	"content_scripts": [ {
+		"js": [ "content.js" ],
+		"matches": [ "http://*/*", "https://*/*" ]
+	} ],
+	"description": "One-click debugging, profiling and tracing extension for Xdebug",
+	"icons": {
+		"128": "images/icon-128.png",
+		"16": "images/icon-16.png",
+		"48": "images/icon-48.png"
+	},
+	"manifest_version": 2,
+	"name": "Xdebug helper",
+	"options_page": "options.html",
+	"page_action": {
+		"default_icon": "images/bug-gray.png",
+		"default_title": "Debugging, profiling & tracing disabled"
+	},
+	"permissions": [ "tabs", "http://*/*", "https://*/*" ],
+	"update_url": "http://clients2.google.com/service/update2/crx",
+	"version": "1.2.0"
 }
