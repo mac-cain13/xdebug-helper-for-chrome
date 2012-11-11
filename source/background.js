@@ -86,7 +86,7 @@ function updateIcon(status, tabid)
 
 	  chrome.pageAction.setIcon({
 		tabId: tabid,
-		path: "images/script-save.png"
+		path: "images/script.png"
 	  });
 	}
 	else
