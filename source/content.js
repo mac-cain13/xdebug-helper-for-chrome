@@ -2,6 +2,7 @@
 chrome.extension.onRequest.addListener(
 		function(request, sender, sendResponse)
 		{
+			idekey = "XDEBUG_ECLIPSE";
 			if (request.idekey)
 			{
 				idekey = request.idekey;
