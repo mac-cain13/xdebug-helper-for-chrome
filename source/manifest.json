@@ -21,5 +21,12 @@
 	},
 	"permissions": [ "tabs", "http://*/*", "https://*/*" ],
 	"update_url": "http://clients2.google.com/service/update2/crx",
-	"version": "1.3.0"
+	"version": "1.3.0",
+	"commands": {
+		"_execute_page_action": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+X"
+			}
+		}
+	}
 }
