@@ -20,6 +20,7 @@ How do I contribute?
 A: [Submit issues and ideas](https://github.com/wrep/xdebug-helper-for-chrome/issues)
 
 B: [Submit a pull request](https://help.github.com/articles/using-pull-requests)
+
 1. Fork this repo and create a branch
 2. Commit and push your changes to your branch
 3. When you're happy send us a pull request!
