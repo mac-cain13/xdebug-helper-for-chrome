@@ -23,7 +23,7 @@ function restore_options()
 		idekey = "XDEBUG_ECLIPSE";
 	}
 
-	if (idekey == "XDEBUG_ECLIPSE" || idekey == "netbeans-xdebug")
+	if (idekey == "XDEBUG_ECLIPSE" || idekey == "netbeans-xdebug" || idekey == "macgdbp")
 	{
 		$('#ide').val(idekey);
 	}
