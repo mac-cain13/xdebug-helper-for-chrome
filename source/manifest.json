@@ -17,7 +17,8 @@
 	"options_page": "options.html",
 	"page_action": {
 		"default_icon": "images/bug-gray.png",
-		"default_title": "Debugging, profiling & tracing disabled"
+		"default_title": "Debugging, profiling & tracing disabled",
+		"default_popup" : "popup.html"
 	},
 	"permissions": [ "tabs", "http://*/*", "https://*/*" ],
 	"update_url": "http://clients2.google.com/service/update2/crx",
