@@ -85,7 +85,7 @@ $(document).ready(function()
 			$("#customkey").fadeOut();
 			$("#idekey").val($("#ide").val());
 
-			 save_options();
+			save_options();
 		}
 		else
 		{

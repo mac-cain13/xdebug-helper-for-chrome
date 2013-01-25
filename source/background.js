@@ -14,11 +14,11 @@ chrome.tabs.onUpdated.addListener(function(tabid)
 		}
 		sites = JSON.parse(sites);
 
-		baseDomain = tab.url.match(/:\/\/(.[^/]+)/)[1];
+		baseDomain = tab.url.match(/:\/\/(.[^\/]+)/)[1];
 
 		match = isValueInArray(sites, baseDomain);
 
-		if (match || sites.length == 0)
+		if (match || sites.length === 0)
 		{
 			chrome.pageAction.show(tabid);
 			chrome.tabs.getSelected(null, function(tab)
@@ -26,7 +26,8 @@ chrome.tabs.onUpdated.addListener(function(tabid)
 				chrome.tabs.sendRequest(
 					tab.id,
 					{
-						cmd: "status", idekey: localStorage["xdebugIdeKey"]
+						cmd: "status",
+						idekey: localStorage["xdebugIdeKey"]
 					},
 					function(response)
 					{
@@ -66,7 +67,7 @@ function updateIcon(status, tabid)
 
 		chrome.pageAction.setIcon({
 			tabId: tabid,
-			 path: "images/bug.png"
+			path: "images/bug.png"
 		});
 	}
 	else if (status == 2)
@@ -78,20 +79,20 @@ function updateIcon(status, tabid)
 
 		chrome.pageAction.setIcon({
 			tabId: tabid,
-			 path: "images/clock.png"
+			path: "images/clock.png"
 		});
 	}
 	else if (status == 3)
 	{
-	  chrome.pageAction.setTitle({
-		tabId: tabid,
-		title: "Tracing enabled"
-	  });
+		chrome.pageAction.setTitle({
+			tabId: tabid,
+			title: "Tracing enabled"
+		});
 
-	  chrome.pageAction.setIcon({
-		tabId: tabid,
-		path: "images/script.png"
-	  });
+		chrome.pageAction.setIcon({
+			tabId: tabid,
+			path: "images/script.png"
+		});
 	}
 	else
 	{
@@ -101,7 +102,7 @@ function updateIcon(status, tabid)
 		});
 
 		chrome.pageAction.setIcon({
-		   tabId: tabid,
+			tabId: tabid,
 			path: "images/bug-gray.png"
 		});
 	}

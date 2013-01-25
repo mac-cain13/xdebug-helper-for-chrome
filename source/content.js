@@ -1,4 +1,3 @@
-
 chrome.extension.onRequest.addListener(
 		function(request, sender, sendResponse)
 		{
@@ -43,7 +42,7 @@ function xdebugToggle()
 {
 	var debuggingState = xdebugCheckStatus();
 
-	if (debuggingState == 0)
+	if (debuggingState === 0)
 	{
 		// Current is all off, switch debugging on
 		xdebugSetCookie('XDEBUG_SESSION', idekey, 60);
