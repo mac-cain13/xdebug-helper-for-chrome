@@ -32,13 +32,13 @@ body {
 	background-color: #c8e8c3;
 }
 
-.togglelist li a.active {
+.togglelist li .active {
 	background: #64d153;
 }
 
 .inlineicon {
 	vertical-align: middle;
-	width: 16px;
-	height: 16px;
+	min-width: 16px;
+	min-height: 16px;
 	padding: 0 6px 0 0;
 }
