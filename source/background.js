@@ -44,63 +44,46 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 	}
 });
 
-function updateIcon(status, tabid)
+function updateIcon(status, tabId)
 {
+	// Figure the correct title/image with the given state
+	var title = "Debugging, profiling & tracing disabled",
+		image = "images/bug-gray.png";
+
 	if (status == 1)
 	{
-		chrome.pageAction.setTitle({
-			tabId: tabid,
-			title: "Debugging enabled"
-		});
-
-		chrome.pageAction.setIcon({
-			tabId: tabid,
-			path: "images/bug.png"
-		});
+		image = "images/bug.png";
+		title = "Debugging enabled";
 	}
 	else if (status == 2)
 	{
-		chrome.pageAction.setTitle({
-			tabId: tabid,
-			title: "Profiling enabled"
-		});
-
-		chrome.pageAction.setIcon({
-			tabId: tabid,
-			path: "images/clock.png"
-		});
+		title = "Profiling enabled";
+		image = "images/clock.png";
 	}
 	else if (status == 3)
 	{
-		chrome.pageAction.setTitle({
-			tabId: tabid,
-			title: "Tracing enabled"
-		});
-
-		chrome.pageAction.setIcon({
-			tabId: tabid,
-			path: "images/script.png"
-		});
+		title = "Tracing enabled";
+		image = "images/script.png";
 	}
-	else
-	{
-		chrome.pageAction.setTitle({
-			tabId: tabid,
-			title: "Debugging, profiling & tracing disabled"
-		});
 
-		chrome.pageAction.setIcon({
-			tabId: tabid,
-			path: "images/bug-gray.png"
-		});
-	}
+	// Update title
+	chrome.pageAction.setTitle({
+		tabId: tabId,
+		title: title
+	});
+
+	// Update image
+	chrome.pageAction.setIcon({
+		tabId: tabId,
+		path: image
+	});
 }
 
 function isValueInArray(arr, val)
 {
 	for (i = 0; i < arr.length; i++)
 	{
-		re = new RegExp(arr[i], "gi");
+		var re = new RegExp(arr[i], "gi");
 		if (re.test(val))
 		{
 			return true;
