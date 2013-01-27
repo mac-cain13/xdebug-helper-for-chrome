@@ -1,4 +1,4 @@
-chrome.tabs.onUpdated.addListener(function(tabid)
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 {
 	chrome.tabs.getSelected(null, function(tab)
 	{
@@ -36,23 +36,6 @@ chrome.tabs.onUpdated.addListener(function(tabid)
 				);
 			});
 		}
-	});
-});
-
-chrome.pageAction.onClicked.addListener(function(tab)
-{
-	chrome.tabs.getSelected(null, function(tab)
-	{
-		chrome.tabs.sendRequest(
-			tab.id,
-			{
-				cmd: "toggleStatus", idekey: localStorage["xdebugIdeKey"]
-			},
-			function(response)
-			{
-				updateIcon(response.result, tab.id);
-			}
-		);
 	});
 });
 
