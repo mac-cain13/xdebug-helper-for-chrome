@@ -5,7 +5,7 @@
 
 	"manifest_version": 2,
 	"update_url": "http://clients2.google.com/service/update2/crx",
-	"permissions": [ "tabs", "http://*/*", "https://*/*" ],
+	"permissions": [ "tabs", "*://*/*" ],
 	"icons": {
 		"128": "images/icon-128.png",
 		"16": "images/icon-16.png",
@@ -21,10 +21,10 @@
 	},
 	"content_scripts": [ {
 		"js": [ "content.js" ],
-		"matches": [ "http://*/*", "https://*/*" ]
+		"matches": [ "*://*/*" ]
 	} ],
 	"background": {
-		"scripts":["background.js"]
+		"scripts": [ "background.js" ]
 	},
 
 	"commands": {

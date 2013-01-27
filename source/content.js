@@ -67,7 +67,7 @@ var xdebug = (function() {
 			}
 
 			// Respond with the current status
-			sendResponse({status: newStatus});
+			sendResponse({ status: newStatus });
 		},
 
 		// Get current state
