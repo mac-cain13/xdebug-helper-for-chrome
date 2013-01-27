@@ -53,6 +53,31 @@ $(function() {
 	key("p", function() { $("#action-profile").click(); });
 	key("t", function() { $("#action-trace").click(); });
 	key("s", function() { $("#action-disable").click(); });
+	key("space,enter", function() { $("a:focus").click(); });
+	key("down,right", function()
+	{
+		var current = $(".action:focus");
+		if (current.length === 0)
+		{
+			$(".action:first").focus();
+		}
+		else
+		{
+			current.parent().next().find("a").focus();
+		}
+	});
+	key("up,left", function()
+	{
+		var current = $(".action:focus");
+		if (current.length === 0)
+		{
+			$(".action:last").focus();
+		}
+		else
+		{
+			current.parent().prev().find("a").focus();
+		}
+	});
 
 	// Bit of a hack to prevent Chrome from focussing the first option automaticly
 	$("a").on("focus", function()
