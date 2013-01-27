@@ -24,11 +24,11 @@ function restore_options()
 
 	if (idekey == "XDEBUG_ECLIPSE" || idekey == "netbeans-xdebug" || idekey == "macgdbp")
 	{
-		$('#ide').val(idekey);
+		$("#ide").val(idekey);
 	}
 	else
 	{
-		$('#ide').val("null");
+		$("#ide").val("null");
 		$("#customkey").fadeIn();
 	}
 	$('#idekey').val(idekey);
@@ -75,7 +75,7 @@ function addItem(id, value)
 	opt.text = value;
 }
 
-$(document).ready(function()
+$(function()
 {
 	$("#ide").change(function ()
 	{
