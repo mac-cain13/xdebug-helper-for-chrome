@@ -62,14 +62,14 @@ body {
 #content, #footer {
 	width: 400px;
 	padding: 7px;
-	margin-left: auto ;
-	margin-right: auto ;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #content {
 	border: 5px solid #64d153;
 	background-color: #fff;
-	-webkit-border-radius: 7px;
+	border-radius: 7px;
 }
 
 #footer {
@@ -87,7 +87,7 @@ body {
 	width: 190px;
 	text-align: center;
 	background-color: #c8e8c3;
-	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 
 #hint img {
@@ -105,7 +105,6 @@ body {
 	text-decoration: none;
 }
 
-.contribute span
-{
+.contribute span {
 	text-decoration: underline;
 }

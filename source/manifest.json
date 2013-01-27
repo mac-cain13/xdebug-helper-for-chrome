@@ -16,7 +16,8 @@
 
 	"page_action": {
 		"default_icon": "images/bug-gray.png",
-		"default_title": "Debugging, profiling & tracing disabled"
+		"default_title": "Debugging, profiling & tracing disabled",
+		"default_popup" : "popup.html"
 	},
 	"content_scripts": [ {
 		"js": [ "content.js" ],

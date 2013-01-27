@@ -1,4 +1,3 @@
-
 function save_options()
 {
 	input = document.getElementById("idekey");
