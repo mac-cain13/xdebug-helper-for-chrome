@@ -7,7 +7,7 @@ chrome.tabs.onUpdated.addListener(function(tabid)
 			return;
 		}
 
-		sites = localStorage["sites"];
+		var sites = localStorage["sites"];
 		if (!sites)
 		{
 			sites = "[]";
@@ -26,7 +26,7 @@ chrome.tabs.onUpdated.addListener(function(tabid)
 				chrome.tabs.sendRequest(
 					tab.id,
 					{
-						cmd: "status",
+						cmd: "getStatus",
 						idekey: localStorage["xdebugIdeKey"]
 					},
 					function(response)
@@ -46,7 +46,7 @@ chrome.pageAction.onClicked.addListener(function(tab)
 		chrome.tabs.sendRequest(
 			tab.id,
 			{
-				cmd: "toggle", idekey: localStorage["xdebugIdeKey"]
+				cmd: "toggleStatus", idekey: localStorage["xdebugIdeKey"]
 			},
 			function(response)
 			{
