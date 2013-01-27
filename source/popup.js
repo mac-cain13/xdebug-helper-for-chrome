@@ -48,6 +48,12 @@ $(function() {
 		});
 	});
 
+	// Shortcuts
+	key("d", function() { $("#action-debug").click(); });
+	key("p", function() { $("#action-profile").click(); });
+	key("t", function() { $("#action-trace").click(); });
+	key("s", function() { $("#action-disable").click(); });
+
 	// Bit of a hack to prevent Chrome from focussing the first option automaticly
 	$("a").on("focus", function()
 	{
