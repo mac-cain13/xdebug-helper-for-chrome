@@ -47,4 +47,11 @@ $(function() {
 			);
 		});
 	});
+
+	// Bit of a hack to prevent Chrome from focussing the first option automaticly
+	$("a").on("focus", function()
+	{
+		$(this).blur();
+		$("a").off("focus");
+	});
 });
