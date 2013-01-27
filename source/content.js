@@ -1,10 +1,10 @@
 var xdebug = (function() {
 	// Set a cookie
-	function setCookie(cookieName, cookieVal, minutes)
+	function setCookie(name, value, minutes)
 	{
 		var exp = new Date();
 		exp.setTime(exp.getTime() + (minutes * 60 * 1000));
-		document.cookie = cookieName + "=" + cookieVal + "; expires=" + exp.toGMTString() + "; path=/";
+		document.cookie = name + "=" + value + "; expires=" + exp.toGMTString() + "; path=/";
 	}
 
 	// Get a cookie
@@ -20,6 +20,12 @@ var xdebug = (function() {
 			cookieEndIndex = document.cookie.length;
 
 		return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+	}
+
+	// Remove a cookie
+	function deleteCookie(name)
+	{
+		setCookie(name, null, -60);
 	}
 
 	// Public methods
@@ -89,29 +95,29 @@ var xdebug = (function() {
 			{
 				// Set debugging on
 				setCookie("XDEBUG_SESSION", idekey, 60);
-				setCookie("XDEBUG_PROFILE", null, -60);
-				setCookie("XDEBUG_TRACE", null, -60);
+				deleteCookie("XDEBUG_PROFILE");
+				deleteCookie("XDEBUG_TRACE");
 			}
 			else if (status == 2)
 			{
 				// Set profiling on
-				setCookie("XDEBUG_SESSION", null, -60);
+				deleteCookie("XDEBUG_SESSION");
 				setCookie("XDEBUG_PROFILE", idekey, 60);
-				setCookie("XDEBUG_TRACE", null, -60);
+				deleteCookie("XDEBUG_TRACE");
 			}
 			else if (status == 3)
 			{
 				// Set tracing on
-				setCookie("XDEBUG_SESSION", null, -60);
-				setCookie("XDEBUG_PROFILE", null, -60);
+				deleteCookie("XDEBUG_SESSION");
+				deleteCookie("XDEBUG_PROFILE");
 				setCookie("XDEBUG_TRACE", idekey, 60);
 			}
 			else
 			{
 				// Disable all Xdebug functions
-				setCookie("XDEBUG_SESSION", null, -60);
-				setCookie("XDEBUG_PROFILE", null, -60);
-				setCookie("XDEBUG_TRACE", null, -60);
+				deleteCookie("XDEBUG_SESSION");
+				deleteCookie("XDEBUG_PROFILE");
+				deleteCookie("XDEBUG_TRACE");
 			}
 
 			// Return the new status
