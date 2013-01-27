@@ -1,5 +1,13 @@
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 {
+	// We only react on a complete load of a page,
+	//  only then we're sure the content.js is loaded.
+	if (changeInfo.status !== "complete")
+	{
+		return;
+	}
+
+	// Prep some variables
 	var sites = [],
 		ideKey = "XDEBUG_ECLIPSE",
 		match = false,
