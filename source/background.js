@@ -1,42 +1,47 @@
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 {
-	chrome.tabs.getSelected(null, function(tab)
+	var sites = [],
+		ideKey = "XDEBUG_ECLIPSE",
+		match = false,
+		domain;
+
+	// Check if localStorage is available and get the settings out of it
+	if (localStorage)
 	{
-		if (!localStorage)
+		if (localStorage["sites"])
 		{
-			return;
+			sites = JSON.parse(localStorage["sites"]);
 		}
 
-		var sites = localStorage["sites"];
-		if (!sites)
+		if (localStorage["xdebugIdeKey"])
 		{
-			sites = "[]";
+			ideKey = localStorage["xdebugIdeKey"];
 		}
-		sites = JSON.parse(sites);
+	}
 
-		baseDomain = tab.url.match(/:\/\/(.[^\/]+)/)[1];
+	// Get the current domain out of the tab URL and check if it matches anything in the sites array
+	domain = tab.url.match(/:\/\/(.[^\/]+)/)[1];
+	match = isValueInArray(sites, domain);
 
-		match = isValueInArray(sites, baseDomain);
+	// Check if we have a match or don't need to match at all
+	if (match || sites.length === 0)
+	{
+		// Show the pageAction
+		chrome.pageAction.show(tabId);
 
-		if (match || sites.length === 0)
-		{
-			chrome.pageAction.show(tabid);
-			chrome.tabs.getSelected(null, function(tab)
+		// Request the current status and update the icon accordingly
+		chrome.tabs.sendRequest(
+			tabId,
 			{
-				chrome.tabs.sendRequest(
-					tab.id,
-					{
-						cmd: "getStatus",
-						idekey: localStorage["xdebugIdeKey"]
-					},
-					function(response)
-					{
-						updateIcon(response.status, tabid);
-					}
-				);
-			});
-		}
-	});
+				cmd: "getStatus",
+				idekey: ideKey
+			},
+			function(response)
+			{
+				updateIcon(response.status, tabId);
+			}
+		);
+	}
 });
 
 function updateIcon(status, tabid)
