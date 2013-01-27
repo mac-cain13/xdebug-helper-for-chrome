@@ -22,14 +22,19 @@ body {
 
 .togglelist li:first-child a {
 	margin-top: 0;
+	border-top-left-radius: 3px 3px;
+	border-top-right-radius: 3px 3px;
 }
 
 .togglelist li:last-child a {
 	margin-bottom: 0;
+	border-bottom-left-radius: 3px 3px;
+	border-bottom-right-radius: 3px 3px;
 }
 
-.togglelist li a:hover {
+.togglelist li a:hover, .togglelist li a:focus {
 	background-color: #c8e8c3;
+	outline: none;
 }
 
 .togglelist li .active {
