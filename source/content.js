@@ -7,18 +7,28 @@ var xdebug = (function() {
 		document.cookie = name + "=" + value + "; expires=" + exp.toGMTString() + "; path=/";
 	}
 
-	// Get a cookie
+	// Get the content in a cookie
 	function getCookie(name)
 	{
-		var prefix = name + "=";
-		var cookieStartIndex = document.cookie.indexOf(prefix);
+		// Search for the start of the goven cookie
+		var prefix = name + "=",
+			cookieStartIndex = document.cookie.indexOf(prefix),
+			cookieEndIndex;
+
+		// If the cookie is not found return null
 		if (cookieStartIndex == -1)
+		{
 			return null;
+		}
 
-		var cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length);
+		// Look for the end of the cookie
+		cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length);
 		if (cookieEndIndex == -1)
+		{
 			cookieEndIndex = document.cookie.length;
+		}
 
+		// Extract the cookie content
 		return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex));
 	}
 
@@ -33,7 +43,7 @@ var xdebug = (function() {
 		// Handles request from other extension parts
 		requestListener : function(request, sender, sendResponse)
 		{
-			var result,
+			var newStatus,
 				idekey = "XDEBUG_ECLIPSE";
 
 			// Use the IDE key from the request, if any is given
@@ -45,40 +55,40 @@ var xdebug = (function() {
 			// Execute the requested command
 			if (request.cmd == "getStatus")
 			{
-				result = exposed.getStatus(idekey);
+				newStatus = exposed.getStatus(idekey);
 			}
 			else if (request.cmd == "toggleStatus")
 			{
-				result = exposed.toggleStatus(idekey);
+				newStatus = exposed.toggleStatus(idekey);
 			}
 			else if (request.cmd == "setStatus")
 			{
-				result = exposed.setStatus(request.status, idekey);
+				newStatus = exposed.setStatus(request.status, idekey);
 			}
 
 			// Respond with the current status
-			sendResponse({result: result});
+			sendResponse({status: newStatus});
 		},
 
 		// Get current state
 		getStatus : function(idekey)
 		{
-			var result = 0;
+			var status = 0;
 
 			if (getCookie("XDEBUG_SESSION") == idekey)
 			{
-				result = 1;
+				status = 1;
 			}
 			else if (getCookie("XDEBUG_PROFILE") == idekey)
 			{
-				result = 2;
+				status = 2;
 			}
 			else if (getCookie("XDEBUG_TRACE") == idekey)
 			{
-				result = 3;
+				status = 3;
 			}
 
-			return result;
+			return status;
 		},
 
 		// Toggle to the next state

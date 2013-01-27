@@ -31,7 +31,7 @@ chrome.tabs.onUpdated.addListener(function(tabid)
 					},
 					function(response)
 					{
-						updateIcon(response.result, tabid);
+						updateIcon(response.status, tabid);
 					}
 				);
 			});

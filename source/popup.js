@@ -10,7 +10,7 @@ $(function() {
 				},
 				function(response)
 				{
-					chrome.extension.getBackgroundPage().updateIcon(response.result, tab.id);
+					chrome.extension.getBackgroundPage().updateIcon(response.status, tab.id);
 					window.close();
 				}
 			);
