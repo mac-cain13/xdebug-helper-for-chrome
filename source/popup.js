@@ -10,7 +10,7 @@ $(function() {
 	// Request the current state from the active tab
 	chrome.tabs.query({ active: true, windowId: chrome.windows.WINDOW_ID_CURRENT }, function(tabs)
 	{
-		chrome.tabs.sendRequest(
+		chrome.tabs.sendMessage(
 				tabs[0].id,
 				{
 					cmd: "getStatus",
@@ -31,7 +31,7 @@ $(function() {
 		// Set the new state on the active tab
 		chrome.tabs.query({ active: true, windowId: chrome.windows.WINDOW_ID_CURRENT }, function(tabs)
 		{
-			chrome.tabs.sendRequest(
+			chrome.tabs.sendMessage(
 				tabs[0].id,
 				{
 					cmd: "setStatus",

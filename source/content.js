@@ -40,8 +40,8 @@ var xdebug = (function() {
 
 	// Public methods
 	var exposed = {
-		// Handles request from other extension parts
-		requestListener : function(request, sender, sendResponse)
+		// Handles messages from other extension parts
+		messageListener : function(request, sender, sendResponse)
 		{
 			var newStatus,
 				idekey = "XDEBUG_ECLIPSE";
@@ -138,5 +138,5 @@ var xdebug = (function() {
 	return exposed;
 })();
 
-// Attach the request listener
-chrome.extension.onRequest.addListener(xdebug.requestListener);
+// Attach the message listener
+chrome.extension.onMessage.addListener(xdebug.messageListener);

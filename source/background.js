@@ -30,7 +30,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 		chrome.pageAction.show(tabId);
 
 		// Request the current status and update the icon accordingly
-		chrome.tabs.sendRequest(
+		chrome.tabs.sendMessage(
 			tabId,
 			{
 				cmd: "getStatus",
