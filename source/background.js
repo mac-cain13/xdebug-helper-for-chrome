@@ -1,8 +1,8 @@
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 {
-	// We only react on a complete load of a page,
+	// We only react on a complete load of a http(s) page,
 	//  only then we're sure the content.js is loaded.
-	if (changeInfo.status !== "complete")
+	if (changeInfo.status !== "complete" || tab.url.indexOf("http") !== 0)
 	{
 		return;
 	}
