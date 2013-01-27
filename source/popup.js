@@ -7,7 +7,7 @@ $(function() {
 		ideKey = localStorage["xdebugIdeKey"];
 	}
 
-	// Request the current tab for the current state
+	// Request the current state from the active tab
 	chrome.tabs.query({ active: true, windowId: chrome.windows.WINDOW_ID_CURRENT}, function(tabs)
 	{
 		chrome.tabs.sendRequest(
@@ -18,6 +18,7 @@ $(function() {
 				},
 				function(response)
 				{
+					// Highlight the correct option
 					$('a[data-status="' + response.status + '"]').addClass("active");
 				}
 			);
@@ -25,21 +26,22 @@ $(function() {
 
 	// Attach handler when user clicks on
 	$("a").on("click", function(eventObject) {
-		var obj = $(this),
-			requestedStatus = obj.data("status");
+		var newStatus = $(this).data("status");
 
-		chrome.tabs.getSelected(null, function(tab)
+		// Set the new state on the active tab
+		chrome.tabs.query({ active: true, windowId: chrome.windows.WINDOW_ID_CURRENT}, function(tabs)
 		{
 			chrome.tabs.sendRequest(
-				tab.id,
+				tabs[0].id,
 				{
 					cmd: "setStatus",
-					status: requestedStatus,
+					status: newStatus,
 					idekey: ideKey
 				},
 				function(response)
 				{
-					chrome.extension.getBackgroundPage().updateIcon(response.status, tab.id);
+					// Make the backgroundpage update the icon and close the popup
+					chrome.extension.getBackgroundPage().updateIcon(response.status, tabs[0].id);
 					window.close();
 				}
 			);
