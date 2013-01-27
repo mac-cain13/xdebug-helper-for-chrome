@@ -7,14 +7,10 @@ debugging, profiling and tracing of your PHP-code easily.
 
 How to install this extension?
 ------------------------------
-Stable version:
+**Stable version:** Go to the [Google Chrome Web Store](https://chrome.google.com/webstore/detail/eadndfjplgieldjbigjakmdgkmoaaaoc)
+ans click "Add to Chrome".
 
-1. Go to the [Google Chrome Web Store](https://chrome.google.com/webstore/detail/eadndfjplgieldjbigjakmdgkmoaaaoc)
-2. Click "Add to Chrome"
-3. Done!
-
-Development version:
-[Download the source from GitHub](https://github.com/wrep/xdebug-helper-for-chrome/archive/master.zip)
+**Development version:** [Download the source from GitHub](https://github.com/wrep/xdebug-helper-for-chrome/archive/master.zip)
 and [load the extension into Chrome](http://developer.chrome.com/extensions/getstarted.html#unpacked)
 yourself!
 
