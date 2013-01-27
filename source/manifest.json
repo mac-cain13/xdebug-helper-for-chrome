@@ -1,6 +1,6 @@
 {
 	"name": "Xdebug helper",
-	"description": "One-click debugging, profiling and tracing extension for Xdebug",
+	"description": "Easy debugging, profiling and tracing extension for Xdebug",
 	"version": "1.3.0",
 
 	"manifest_version": 2,
