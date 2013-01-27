@@ -52,8 +52,8 @@ function updateIcon(status, tabId)
 
 	if (status == 1)
 	{
-		image = "images/bug.png";
 		title = "Debugging enabled";
+		image = "images/bug.png";
 	}
 	else if (status == 2)
 	{
