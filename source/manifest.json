@@ -1,25 +1,37 @@
 {
-	"background": {
-		"scripts":["background.js"]
-	},
-	"content_scripts": [ {
-		"js": [ "content.js" ],
-		"matches": [ "http://*/*", "https://*/*" ]
-	} ],
-	"description": "One-click debugging, profiling and tracing extension for Xdebug",
+	"name": "Xdebug helper",
+	"description": "Easy debugging, profiling and tracing extension for Xdebug",
+	"version": "1.3.0",
+
+	"manifest_version": 2,
+	"minimum_chrome_version": "20",
+	"permissions": [ "tabs", "*://*/*" ],
 	"icons": {
 		"128": "images/icon-128.png",
 		"16": "images/icon-16.png",
 		"48": "images/icon-48.png"
 	},
-	"manifest_version": 2,
-	"name": "Xdebug helper",
+
 	"options_page": "options.html",
+
 	"page_action": {
 		"default_icon": "images/bug-gray.png",
-		"default_title": "Debugging, profiling & tracing disabled"
+		"default_title": "Debugging, profiling & tracing disabled",
+		"default_popup" : "popup.html"
 	},
-	"permissions": [ "tabs", "http://*/*", "https://*/*" ],
-	"update_url": "http://clients2.google.com/service/update2/crx",
-	"version": "1.2.1"
+	"content_scripts": [ {
+		"js": [ "content.js" ],
+		"matches": [ "*://*/*" ]
+	} ],
+	"background": {
+		"scripts": [ "background.js" ]
+	},
+
+	"commands": {
+		"_execute_page_action": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+X"
+			}
+		}
+	}
 }

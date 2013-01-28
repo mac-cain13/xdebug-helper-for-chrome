@@ -1,97 +1,142 @@
-chrome.extension.onRequest.addListener(
-		function(request, sender, sendResponse)
+var xdebug = (function() {
+	// Set a cookie
+	function setCookie(name, value, hours)
+	{
+		var exp = new Date();
+		exp.setTime(exp.getTime() + (hours * 60 * 60 * 1000));
+		document.cookie = name + "=" + value + "; expires=" + exp.toGMTString() + "; path=/";
+	}
+
+	// Get the content in a cookie
+	function getCookie(name)
+	{
+		// Search for the start of the goven cookie
+		var prefix = name + "=",
+			cookieStartIndex = document.cookie.indexOf(prefix),
+			cookieEndIndex;
+
+		// If the cookie is not found return null
+		if (cookieStartIndex == -1)
 		{
-			idekey = "XDEBUG_ECLIPSE";
+			return null;
+		}
+
+		// Look for the end of the cookie
+		cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length);
+		if (cookieEndIndex == -1)
+		{
+			cookieEndIndex = document.cookie.length;
+		}
+
+		// Extract the cookie content
+		return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+	}
+
+	// Remove a cookie
+	function deleteCookie(name)
+	{
+		setCookie(name, null, -60);
+	}
+
+	// Public methods
+	var exposed = {
+		// Handles messages from other extension parts
+		messageListener : function(request, sender, sendResponse)
+		{
+			var newStatus,
+				idekey = "XDEBUG_ECLIPSE";
+
+			// Use the IDE key from the request, if any is given
 			if (request.idekey)
 			{
 				idekey = request.idekey;
 			}
 
-			if (request.cmd == "status")
+			// Execute the requested command
+			if (request.cmd == "getStatus")
 			{
-				result = xdebugCheckStatus();
+				newStatus = exposed.getStatus(idekey);
 			}
-			else if (request.cmd == "toggle")
+			else if (request.cmd == "toggleStatus")
 			{
-				result = xdebugToggle();
+				newStatus = exposed.toggleStatus(idekey);
+			}
+			else if (request.cmd == "setStatus")
+			{
+				newStatus = exposed.setStatus(request.status, idekey);
 			}
 
-			sendResponse({result: result});
+			// Respond with the current status
+			sendResponse({ status: newStatus });
+		},
+
+		// Get current state
+		getStatus : function(idekey)
+		{
+			var status = 0;
+
+			if (getCookie("XDEBUG_SESSION") == idekey)
+			{
+				status = 1;
+			}
+			else if (getCookie("XDEBUG_PROFILE") == idekey)
+			{
+				status = 2;
+			}
+			else if (getCookie("XDEBUG_TRACE") == idekey)
+			{
+				status = 3;
+			}
+
+			return status;
+		},
+
+		// Toggle to the next state
+		toggleStatus : function(idekey)
+		{
+			var nextStatus = (exposed.getStatus(idekey) + 1) % 4;
+			return exposed.setStatus(nextStatus, idekey);
+		},
+
+		// Set the state
+		setStatus : function(status, idekey)
+		{
+			if (status == 1)
+			{
+				// Set debugging on
+				setCookie("XDEBUG_SESSION", idekey, 24);
+				deleteCookie("XDEBUG_PROFILE");
+				deleteCookie("XDEBUG_TRACE");
+			}
+			else if (status == 2)
+			{
+				// Set profiling on
+				deleteCookie("XDEBUG_SESSION");
+				setCookie("XDEBUG_PROFILE", idekey, 24);
+				deleteCookie("XDEBUG_TRACE");
+			}
+			else if (status == 3)
+			{
+				// Set tracing on
+				deleteCookie("XDEBUG_SESSION");
+				deleteCookie("XDEBUG_PROFILE");
+				setCookie("XDEBUG_TRACE", idekey, 24);
+			}
+			else
+			{
+				// Disable all Xdebug functions
+				deleteCookie("XDEBUG_SESSION");
+				deleteCookie("XDEBUG_PROFILE");
+				deleteCookie("XDEBUG_TRACE");
+			}
+
+			// Return the new status
+			return exposed.getStatus(idekey);
 		}
-);
+	};
 
-function xdebugCheckStatus()
-{
-	if (xdebugGetCookie('XDEBUG_SESSION') == idekey)
-	{
-		return 1;
-	}
-	else if (xdebugGetCookie('XDEBUG_PROFILE') == idekey)
-	{
-		return 2;
-	}
-	else if (xdebugGetCookie('XDEBUG_TRACE') == idekey)
-	{
-		return 3;
-	}
+	return exposed;
+})();
 
-	return 0;
-}
-
-function xdebugToggle()
-{
-	var debuggingState = xdebugCheckStatus();
-
-	if (debuggingState === 0)
-	{
-		// Current is all off, switch debugging on
-		xdebugSetCookie('XDEBUG_SESSION', idekey, 60);
-		xdebugSetCookie('XDEBUG_PROFILE', null, -60);
-		xdebugSetCookie('XDEBUG_TRACE', null, -60);
-	}
-	else if (debuggingState == 1)
-	{
-		// Current is debugging on; switch debugging off and profiling on
-		xdebugSetCookie('XDEBUG_SESSION', null, -60);
-		xdebugSetCookie('XDEBUG_PROFILE', idekey, 60);
-		xdebugSetCookie('XDEBUG_TRACE', null, -60);
-	}
-	else if (debuggingState == 2)
-	{
-		// Current is profiling on; switch profiling off and tracing on
-		xdebugSetCookie('XDEBUG_SESSION', null, -60);
-		xdebugSetCookie('XDEBUG_PROFILE', null, -60);
-		xdebugSetCookie('XDEBUG_TRACE', idekey, 60);
-	}
-	else if (debuggingState == 3)
-	{
-		// Current is tracing on; switch all off
-		xdebugSetCookie('XDEBUG_SESSION', null, -60);
-		xdebugSetCookie('XDEBUG_PROFILE', null, -60);
-		xdebugSetCookie('XDEBUG_TRACE', null, -60);
-	}
-
-	// Return the new state
-	return xdebugCheckStatus();
-}
-
-function xdebugSetCookie(cookieName, cookieVal, minutes)
-{
-	var exp = new Date();
-	exp.setTime(exp.getTime() + (minutes * 60 * 1000));
-	document.cookie = cookieName + "=" + cookieVal + "; expires=" + exp.toGMTString() + "; path=/";
-}
-
-function xdebugGetCookie(name)
-{
-	var prefix = name + "=";
-	var cookieStartIndex = document.cookie.indexOf(prefix);
-	if (cookieStartIndex == -1)
-		return null;
-
-	var cookieEndIndex = document.cookie.indexOf(";", cookieStartIndex + prefix.length);
-	if (cookieEndIndex == -1)
-		cookieEndIndex = document.cookie.length;
-
-	return unescape(document.cookie.substring(cookieStartIndex + prefix.length, cookieEndIndex));
-}
+// Attach the message listener
+chrome.extension.onMessage.addListener(xdebug.messageListener);

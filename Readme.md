@@ -2,34 +2,29 @@ XDebug Helper for Google Chrome
 ===============================
 
 Debugging, profiling and tracing PHP code with [Xdebug](http://xdebug.org/) is very powerful, but enabling
-Xdebug by setting a cookie or adding POST/GET variables is unnecessary hard. This extension will
-help you to enable/disable the debugging, profiling and tracing features with a single click.
+Xdebug with cookies or adding POST/GET variables is way too hard. This extension will help you to enable/disable
+debugging, profiling and tracing of your PHP-code easily.
 
 How to install this extension?
 ------------------------------
-The easiest and recommended way is to go to the [Google Chrome Web Store](https://chrome.google.com/webstore/detail/eadndfjplgieldjbigjakmdgkmoaaaoc)
-and install the latest stable version from there.
+**Stable version:** Go to the [Google Chrome Web Store](https://chrome.google.com/webstore/detail/eadndfjplgieldjbigjakmdgkmoaaaoc)
+ans click "Add to Chrome".
 
-Want to get the latest development version? [Download the source from GitHub](https://github.com/wrep/xdebug-helper-for-chrome/zipball/master)
-and [load the extension into Chrome](http://developer.chrome.com/extensions/getstarted.html)
+**Development version:** [Download the source from GitHub](https://github.com/wrep/xdebug-helper-for-chrome/archive/master.zip)
+and [load the extension into Chrome](http://developer.chrome.com/extensions/getstarted.html#unpacked)
 yourself!
-
-Why is this on GitHub?
-----------------------
-We want you to help us make this extension better and we think GitHub will help a lot with
-that since you can contribute by submitting issues and pull request.
 
 How do I contribute?
 --------------------
-There are basicly two options to contribute. First one; Submit an issue or feature request
-so we know what we can do to make this extension better. It's easy, just write a clear and
-positive issue and we'll look into it! (Can't promise we fix and add everything, but we will
-take it into consideration.)
+A: [Submit issues and ideas](https://github.com/wrep/xdebug-helper-for-chrome/issues)
 
-Second, if you know how to code Chrome Extension fix an issue or enchantment yourself by
-forking our code and submitting a pull request. Please keep pull requests small and make sure
-you're working on top of the most recent code. We'll love to work with you on this project
-so don't hesitate to submit a pull request!
+B: [Submit a pull request](https://help.github.com/articles/using-pull-requests)
+
+1. Fork this repo and create a branch
+2. Commit and push your changes to your branch
+3. When you're happy send us a pull request!
+
+Pro-tip: Make sure to build upon the latest version of the code and keep pull request as small as possible. This makes your pull request easy to merge.
 
 License
 -------

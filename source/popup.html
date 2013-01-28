@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Xdebug helper popup</title>
+
+		<link rel="stylesheet" href="popup.css">
+
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="keymaster.js"></script>
+		<script type="text/javascript" src="popup.js"></script>
+	</head>
+
+	<body>
+		<ul class="togglelist">
+			<li>
+				<a href="#" class="action" id="action-debug" data-status="1">
+					<img class="inlineicon" alt="" src="images/bug.png" /><span class="hotkey">D</span>ebug
+				</a>
+			</li>
+			<li>
+				<a href="#" class="action" id="action-profile" data-status="2">
+					<img class="inlineicon" alt="" src="images/clock.png" /><span class="hotkey">P</span>rofile
+				</a>
+			</li>
+			<li>
+				<a href="#" class="action" id="action-trace" data-status="3">
+					<img class="inlineicon" alt="" src="images/script.png" /><span class="hotkey">T</span>race
+				</a>
+			</li>
+			<li>
+				<a href="#" class="action" id="action-disable" data-status="0">
+					<img class="inlineicon" alt="" src="images/bug-gray.png" />Di<span class="hotkey">s</span>able
+				</a>
+			</li>
+		</ul>
+	</body>
+</html>

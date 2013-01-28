@@ -3,139 +3,31 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Xdebug helper</title>
-		<style>
-		* {
-			font-family: Arial, Helvetica, sans-serif;
-		}
 
-		::selection {
-			background: #64d153;
-			color: #fff;
-			text-shadow: none;
-		}
-
-		h1, h2, h3 {
-			font-family: Georgia, 'Times New Roman', Times, serif;
-			margin-bottom: -5px;
-		}
-
-		h1 {
-			margin: 0 0 -15px 0;
-		}
-
-		a {
-			color: inherit;
-			text-decoration: inherit;
-		}
-
-		a span {
-			text-decoration: underline;
-		}
-
-		a.txtlink {
-			text-decoration: none;
-			border-bottom: 1px dotted #356816;
-			color: #356816;
-		}
-
-		body {
-			background-color: #eee;
-			font-size: 0.95em;
-		}
-
-		#heading {
-			text-align: right;
-		}
-
-		.inlineicon {
-			vertical-align: bottom;
-		}
-
-		#addButton, #removeButton {
-			vertical-align: middle;
-		}
-
-		#siteBox {
-			width: 205px;
-		}
-
-		#newSite {
-			width: 200px;
-		}
-
-		#content, #footer {
-			width: 400px;
-			padding: 7px;
-			margin-left: auto ;
-			margin-right: auto ;
-		}
-
-		#content {
-			border: 5px solid #64d153;
-			background-color: #fff;
-			-webkit-border-radius: 7px;
-		}
-
-		#footer {
-			text-align: right;
-		}
-
-		#footer img {
-			margin-right: -7px;
-		}
-
-		#hint {
-			font-size: 0.8em;
-			padding: 7px;
-			margin: -10px 0 0px 0;
-			width: 190px;
-			text-align: center;
-			background-color: #c8e8c3;
-			-webkit-border-radius: 5px;
-		}
-
-		#hint img {
-			vertical-align: bottom;
-		}
-
-		#customkey {
-			display: none;
-		}
-
-		.contribute {
-			font-size: 10px;
-			color: #808080;
-			float: left;
-			text-decoration: none;
-		}
-
-		.contribute span
-		{
-			text-decoration: underline;
-		}
-		</style>
+		<link rel="stylesheet" href="options.css">
 
 		<script type="text/javascript" src="jquery.js"></script>
-		<script type="text/javascript" src='options.js'></script>
+		<script type="text/javascript" src="options.js"></script>
 	</head>
 
 	<body>
 		<div id="content">
 			<div id="heading">
 				<h1>Xdebug helper</h1>
-				<p>One-click debugging, profiling and tracing</p>
+				<p>Easy debugging, profiling and tracing</p>
 			</div>
 
 			<h3>Introduction</h3>
 			<p style="margin-bottom:5px;">
-				First off install and configure <a target="_blank" class="txtlink" href="http://www.xdebug.org/docs/install">Xdebug</a>, after that your correct IDE key blow. Now start debugging, profiling or tracing by clicking the little bug in the addressbar:
+				First install and configure <a target="_blank" class="txtlink" href="http://www.xdebug.org/docs/install">Xdebug</a>, then set your IDE key below. Now tell Xdebug to debug, profile or trace by clicking the little bug in the addressbar:
 			</p>
 			<p style="margin-top:5px;">
-				<img class="inlineicon" src="images/bug-gray.png" /> Debugging, profiling & tracing disabled<br />
-				<img class="inlineicon" src="images/bug.png" /> Debugging enabled<br />
-				<img class="inlineicon" src="images/clock.png" /> Profiling enabled<br />
-				<img class="inlineicon" src="images/script.png" /> Tracing enabled
+				<img class="inlineicon" alt="" src="images/bug-gray.png" /> Debugging, profiling &amp; tracing disabled<br />
+				<img class="inlineicon" alt="" src="images/bug.png" /> Debugging enabled<br />
+				<img class="inlineicon" alt="" src="images/clock.png" /> Profiling enabled<br />
+				<img class="inlineicon" alt="" src="images/script.png" /> Tracing enabled
 			</p>
+			<p id="hint"><img src="images/lightbulb.png" alt="Tip!" title="Tip!" /> Love hotkeys? Try Ctrl+Shift+X</p>
 
 			<h3>IDE key</h3>
 			<p class="note">Select your IDE to use the default sessionkey or choose other to use a custom key.</p>
@@ -143,6 +35,7 @@
 				<select id="ide">
 					<option value="XDEBUG_ECLIPSE">Eclipse</option>
 					<option value="netbeans-xdebug">Netbeans</option>
+					<option value="macgdbp">MacGDBp</option>
 					<option value="null">Other</option>
 				</select>
 				<span id="customkey"><input type="text" id="idekey" /> <a href="javascript:;"><img style="vertical-align: middle;" src="images/disk.png" alt="Save" title="Save" /></a></span>
@@ -151,13 +44,13 @@
 			<h3>Domain filter</h3>
 			<p class="note">By default we show the bug icon on all pages, but here you can whitelist domains where the icon should show up. Note that all filters are regular expressions.</p>
 			<p><input type="text" value="" id="newSite">
-			<a id='add-site'><img id="addButton" src="images/add.png" alt="Add" title="Add" /></a>
-			<br/>
-			<select id="siteBox" multiple size="5"></select>
-			<a id='remove-site'><img id="removeButton" src="images/delete.png" alt="Remove selected" title="Remove selected" /></a>
+				<a id='add-site'><img id="addButton" src="images/add.png" alt="Add" title="Add" /></a>
+				<br/>
+				<select id="siteBox" multiple size="5"></select>
+				<a id='remove-site'><img id="removeButton" src="images/delete.png" alt="Remove selected" title="Remove selected" /></a>
 			</p>
 
-			<p id="hint"><img src="images/lightbulb.png" alt="Tip!" title="Tip!" /> <a href="http://blog.wrep.nl/post/31720573340/xdebug-helper-for-chrome-how-to-use-the-domain-filter" target="_blank">Need help? Read our <span>blogpost</span>!</a></p>
+			<p id="hint"><img class="inlineicon" src="images/lightbulb.png" alt="Tip!" title="Tip!" /> <a href="http://blog.wrep.nl/post/31720573340/xdebug-helper-for-chrome-how-to-use-the-domain-filter" target="_blank">Need help? Read our <span>blogpost</span>!</a></p>
 		</div>
 
 		<div id="footer">
