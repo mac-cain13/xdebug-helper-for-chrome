@@ -24,7 +24,7 @@ B: [Submit a pull request](https://help.github.com/articles/using-pull-requests)
 2. Commit and push your changes to your branch
 3. When you're happy send us a pull request!
 
-Pro-tip: Make sure to build upon the latest version of the code and keep pull request as small as possible. This makes your pull request easy to merge.
+_**Pro-tip:** Make sure to build upon the latest version of the code and keep pull request as small as possible. This makes your pull request easy to merge._
 
 License
 -------
