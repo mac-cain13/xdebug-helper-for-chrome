@@ -1,7 +1,7 @@
 {
 	"name": "Xdebug helper",
 	"description": "Easy debugging, profiling and tracing extension for Xdebug",
-	"version": "1.3.0",
+	"version": "1.4.0",
 
 	"manifest_version": 2,
 	"minimum_chrome_version": "20",
