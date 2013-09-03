@@ -52,6 +52,52 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 	}
 });
 
+chrome.commands.onCommand.addListener(function(command)
+{
+	if ('toggle_debug_action' == command)
+	{
+		var ideKey = "XDEBUG_ECLIPSE";
+
+		// Check if localStorage is available and get the settings out of it
+		if (localStorage && localStorage["xdebugIdeKey"])
+		{
+			ideKey = localStorage["xdebugIdeKey"];
+		}
+
+		// Fetch the active tab
+		chrome.tabs.query({ active: true, windowId: chrome.windows.WINDOW_ID_CURRENT }, function(tabs)
+		{
+			// Get the current state
+			chrome.tabs.sendMessage(
+				tabs[0].id,
+				{
+					cmd: "getStatus",
+					idekey: ideKey
+				},
+				function(response)
+				{
+					// If state is debugging (1) toggle to disabled (0), else toggle to debugging
+					var newState = (1 == response.status) ? 0 : 1;
+
+					chrome.tabs.sendMessage(
+						tabs[0].id,
+						{
+							cmd: "setStatus",
+							status: newState,
+							idekey: ideKey
+						},
+						function(response)
+						{
+							// Update the icon
+							updateIcon(response.status, tabs[0].id);
+						}
+					);
+				}
+			);
+		});
+	}
+});
+
 function updateIcon(status, tabId)
 {
 	// Figure the correct title/image with the given state

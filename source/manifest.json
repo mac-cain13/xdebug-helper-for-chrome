@@ -31,7 +31,14 @@
 		"_execute_page_action": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+X"
-			}
+			},
+			"description": "Open popup to toggle state"
+		},
+		"toggle_debug_action": {
+			"suggested_key": {
+				"default": "Alt+Shift+X"
+			},
+			"description": "Toggle between the debug and idle state"
 		}
 	}
 }
