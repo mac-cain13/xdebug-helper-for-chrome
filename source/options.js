@@ -22,7 +22,7 @@ function restore_options()
 		idekey = "XDEBUG_ECLIPSE";
 	}
 
-	if (idekey == "XDEBUG_ECLIPSE" || idekey == "netbeans-xdebug" || idekey == "macgdbp")
+	if (idekey == "XDEBUG_ECLIPSE" || idekey == "netbeans-xdebug" || idekey == "macgdbp" || idekey == "PHPSTORM")
 	{
 		$("#ide").val(idekey);
 	}
@@ -92,20 +92,13 @@ $(function()
 		}
 	});
 
-	$("#idekey").change(function()
-	{
-		save_options();
-	});
+	$("#idekey").change(save_options);
+	
+	$('#save-options').click(save_options);
 
-	$('#add-site').click(function()
-	{
-		addSite();
-	});
+	$('#add-site').click(addSite);
 
-	$('#remove-site').click(function()
-	{
-		removeSelectedSite();
-	});
+	$('#remove-site').click(removeSelectedSite);
 
 	restore_options();
 });
