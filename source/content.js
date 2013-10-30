@@ -139,4 +139,4 @@ var xdebug = (function() {
 })();
 
 // Attach the message listener
-chrome.extension.onMessage.addListener(xdebug.messageListener);
+chrome.runtime.onMessage.addListener(xdebug.messageListener);

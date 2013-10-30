@@ -41,7 +41,7 @@ $(function() {
 				function(response)
 				{
 					// Make the backgroundpage update the icon and close the popup
-					chrome.extension.getBackgroundPage().updateIcon(response.status, tabs[0].id);
+					chrome.runtime.getBackgroundPage().updateIcon(response.status, tabs[0].id);
 					window.close();
 				}
 			);
