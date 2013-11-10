@@ -43,3 +43,4 @@ Special thanks
 --------------
 * [remailednet](http://blog.remailed.net) for creating the original [XDebug Enabler](https://chrome.google.com/webstore/detail/eippbhbeglgcphcjmpjcjinjamabeoln) for Chrome
 * [Guilherme Pim](https://github.com/pimguilherme) for contributing a Manifest v2 version
+* [All contributors](https://github.com/wrep/xdebug-helper-for-chrome/graphs/contributors) for taking the time to create a pull request
