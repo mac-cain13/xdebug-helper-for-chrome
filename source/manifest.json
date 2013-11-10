@@ -2,7 +2,7 @@
 	"name": "Xdebug helper",
 	"short_name": "XdebugHelper",
 	"description": "Easy debugging, profiling and tracing extension for Xdebug",
-	"version": "1.4.1.1",
+	"version": "1.4.2",
 	"author": "Mathijs Kadijk",
 
 	"manifest_version": 2,
