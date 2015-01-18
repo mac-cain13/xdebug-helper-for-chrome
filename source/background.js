@@ -28,7 +28,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 	}
 
 	// Get the current domain out of the tab URL and check if it matches anything in the sites array
-	domain = tab.url.match(/:\/\/(.[^\/]+)/)[1];
+	domain = tab.url.match(/:\/\/(.[^\/]*)/)[1];
 	match = isValueInArray(sites, domain);
 
 	// Check if we have a match or don't need to match at all
