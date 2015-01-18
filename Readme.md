@@ -10,13 +10,13 @@ How to install this extension?
 **Stable version:** Go to the [Google Chrome Web Store](https://chrome.google.com/webstore/detail/eadndfjplgieldjbigjakmdgkmoaaaoc)
 and click "Add to Chrome".
 
-**Development version:** [Download the source from GitHub](https://github.com/wrep/xdebug-helper-for-chrome/archive/master.zip)
+**Development version:** [Download the source from GitHub](https://github.com/mac-cain13/xdebug-helper-for-chrome/archive/master.zip)
 and [load the extension into Chrome](http://developer.chrome.com/extensions/getstarted.html#unpacked)
 yourself!
 
 How do I contribute?
 --------------------
-A: [Submit issues and ideas](https://github.com/wrep/xdebug-helper-for-chrome/issues)
+A: [Submit issues and ideas](https://github.com/mac-cain13/xdebug-helper-for-chrome/issues)
 
 B: [Submit a pull request](https://help.github.com/articles/using-pull-requests)
 
@@ -28,16 +28,11 @@ _**Pro-tip:** Make sure to build upon the latest version of the code and keep pu
 
 License
 -------
-The code of this project is licensed under the [MIT license](https://raw.github.com/wrep/xdebug-helper-for-chrome/master/source/License)
+The code of this project is licensed under the [MIT license](https://raw.github.com/mac-cain13/xdebug-helper-for-chrome/master/source/License)
 so you can use it in nearly every project you want to, commercial and non-commercial.
 
 The icons used are the famous [Famfamfam icons from Mark James](http://www.famfamfam.com/lab/icons/silk/)
 licensed under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
-
-The name "Wrep" and all of the Wrep trademarks, slogans, text or logo representation used
-or referred in this project are the property of [Wrep](http://www.wrep.nl/) and may not be
-used in any way without written permission by Wrep. So please remove our logo, name, icons
-and slogans from any fork you make, especially if you want to publish your own version somewhere.
 
 Special thanks
 --------------

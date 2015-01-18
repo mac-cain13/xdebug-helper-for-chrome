@@ -1,4 +1,4 @@
-Copyright (c) 2012 Wrep - http://www.wrep.nl/
+Copyright (c) 2012-2015 Mathijs Kadijk - https://github.com/mac-cain13
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this
 software and associated documentation files (the "Software"), to deal in the Software
@@ -18,8 +18,3 @@ DEALINGS IN THE SOFTWARE.
 
 The icons used are the famous [Famfamfam icons from Mark James](http://www.famfamfam.com/lab/icons/silk/)
 licensed under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
-
-The name "Wrep" and all of the Wrep trademarks, slogans, text or logo representation used
-or referred in this project are the property of [Wrep](http://www.wrep.nl/) and may not be
-used in any way without written permission by Wrep. So please remove our logo, name, icons
-and slogans from any fork you make, especially if you want to publish your own version somewhere.
