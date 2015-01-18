@@ -37,6 +37,10 @@ body {
 	font-size: 0.95em;
 }
 
+.contentTxt {
+	margin-bottom: 5px;
+}
+
 #heading {
 	text-align: right;
 }
@@ -47,7 +51,7 @@ body {
 	height: 16px;
 }
 
-#addButton, #removeButton {
+#addButton, #removeButton, #saveButton {
 	vertical-align: middle;
 }
 
@@ -83,7 +87,6 @@ body {
 #hint {
 	font-size: 0.8em;
 	padding: 7px;
-	margin: -10px 0 0px 0;
 	width: 190px;
 	text-align: center;
 	background-color: #c8e8c3;
