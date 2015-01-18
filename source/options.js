@@ -46,12 +46,15 @@ function restore_options()
 
 function addSite()
 {
-	siteText = document.getElementById("newSite").value;
-	addItem("siteBox", siteText);
-	save_options();
-	document.getElementById("newSite").value = '';
+	siteText = document.getElementById("newSite").value.trim();
 
-	save_options();
+	if (siteText.length > 0) {
+		addItem("siteBox", siteText);
+		save_options();
+		document.getElementById("newSite").value = '';
+
+		save_options();
+	}
 }
 
 function removeSelectedSite()
