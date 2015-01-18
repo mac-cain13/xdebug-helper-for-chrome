@@ -10,7 +10,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 	// Prep some variables
 	var sites = [],
 		ideKey = "XDEBUG_ECLIPSE",
-		match = false,
+		match = true,
 		domain;
 
 	// Check if localStorage is available and get the settings out of it
@@ -32,7 +32,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 	match = isValueInArray(sites, domain);
 
 	// Check if we have a match or don't need to match at all
-	if (match || sites.length === 0)
+	if ( (domain != null && match) || sites.length === 0)
 	{
 		// Show the pageAction
 		chrome.pageAction.show(tabId);
