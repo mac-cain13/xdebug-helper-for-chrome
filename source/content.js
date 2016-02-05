@@ -44,12 +44,24 @@ var xdebug = (function() {
 		messageListener : function(request, sender, sendResponse)
 		{
 			var newStatus,
-				idekey = "XDEBUG_ECLIPSE";
+				idekey = "XDEBUG_ECLIPSE",
+				tracetrigger = null,
+				profiletrigger = null;
 
 			// Use the IDE key from the request, if any is given
 			if (request.idekey)
 			{
 				idekey = request.idekey;
+			}
+			// Use the trace trigger key from the request, if any is given
+			if (request.tracetrigger)
+			{
+				idekey = request.tracetrigger;
+			}
+			// Use the profile trigger key from the request, if any is given
+			if (request.profiletrigger)
+			{
+				idekey = request.profiletrigger;
 			}
 
 			// Execute the requested command
@@ -63,7 +75,7 @@ var xdebug = (function() {
 			}
 			else if (request.cmd == "setStatus")
 			{
-				newStatus = exposed.setStatus(request.status, idekey);
+				newStatus = exposed.setStatus(request.status, idekey, tracetrigger, profiletrigger);
 			}
 
 			// Respond with the current status
@@ -99,7 +111,7 @@ var xdebug = (function() {
 		},
 
 		// Set the state
-		setStatus : function(status, idekey)
+		setStatus : function(status, idekey, tracetrigger, profiletrigger)
 		{
 			if (status == 1)
 			{
@@ -113,6 +125,10 @@ var xdebug = (function() {
 				// Set profiling on
 				deleteCookie("XDEBUG_SESSION");
 				setCookie("XDEBUG_PROFILE", idekey, 24);
+				if (profiletrigger)
+				{
+					setCookie("XDEBUG_PROFILE_ENABLE_TRIGGER_VALUE", profiletrigger, 24);
+				}
 				deleteCookie("XDEBUG_TRACE");
 			}
 			else if (status == 3)
@@ -121,6 +137,10 @@ var xdebug = (function() {
 				deleteCookie("XDEBUG_SESSION");
 				deleteCookie("XDEBUG_PROFILE");
 				setCookie("XDEBUG_TRACE", idekey, 24);
+				if (tracetrigger)
+				{
+					setCookie("XDEBUG_TRACE_ENABLE_TRIGGER_VALUE", tracetrigger, 24);
+				}
 			}
 			else
 			{

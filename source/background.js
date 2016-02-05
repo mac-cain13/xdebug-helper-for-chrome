@@ -11,7 +11,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 	var sites = [],
 		ideKey = "XDEBUG_ECLIPSE",
 		match = true,
-		domain;
+		domain,
+		tracetrigger = null,
+		profiletrigger = null;
 
 	// Check if localStorage is available and get the settings out of it
 	if (localStorage)
@@ -24,6 +26,16 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 		if (localStorage["xdebugIdeKey"])
 		{
 			ideKey = localStorage["xdebugIdeKey"];
+		}
+
+		if (localStorage["xdebugTraceTrigger"])
+		{
+			tracetrigger = localStorage["xdebugTraceTrigger"];
+		}
+
+		if (localStorage["xdebugProfileTrigger"])
+		{
+			profiletrigger = localStorage["xdebugTraceTrigger"];
 		}
 	}
 
@@ -61,7 +73,9 @@ chrome.commands.onCommand.addListener(function(command)
 		// Check if localStorage is available and get the settings out of it
 		if (localStorage && localStorage["xdebugIdeKey"])
 		{
-			ideKey = localStorage["xdebugIdeKey"];
+			ideKey 			= localStorage["xdebugIdeKey"];
+			tracetrigger 	= localStorage["xdebugTraceTrigger"];
+			profiletrigger 	= localStorage["xdebugProfileTrigger"];
 		}
 
 		// Fetch the active tab
