@@ -1,11 +1,8 @@
 function save_options()
 {
-	key = document.getElementById("idekey");
-	idekey = key.value;
-	localStorage["xdebugIdeKey"] = idekey;
-
-	localStorage["xdebugTraceTrigger"] = document.getElementById("tracetrigger").valueOf();
-	localStorage["xdebugProfileTrigger"] = document.getElementById("profiletrigger").valueOf();
+	localStorage["xdebugIdeKey"] = document.getElementById("idekey").value;
+	localStorage["xdebugTraceTrigger"] = document.getElementById("tracetrigger").value;
+	localStorage["xdebugProfileTrigger"] = document.getElementById("profiletrigger").value;
 
 	siteBox = document.getElementById("siteBox");
 	sites = [];
@@ -38,19 +35,19 @@ function restore_options()
 	$('#idekey').val(idekey);
 
 	// Restore Trace Triggers
-	var tt = localStorage["xdebugTraceTrigger"]
-	if (tt)	{
+	var tt = localStorage["xdebugTraceTrigger"];
+	if (tt !== null)	{
 		$("#tracetrigger").val(tt);
 	} else {
-		$("#tracetrigger").val();
+		$("#tracetrigger").val(null);
 	}
 
 	// Restore Profile Triggers
-	var pt = localStorage["xdebugProfileTrigger"]
-	if (pt)	{
+	var pt = localStorage["xdebugProfileTrigger"];
+	if (pt !== null)	{
 		$("#profiletrigger").val(pt);
 	} else {
-		$("#profiletrigger").val();
+		$("#profiletrigger").val(null);
 	}
 
 	// Restore Sites

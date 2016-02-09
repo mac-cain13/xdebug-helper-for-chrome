@@ -97,7 +97,7 @@ button {
 	margin-right: -7px;
 }
 
-#hint {
+.hint {
 	font-size: 0.8em;
 	padding: 7px;
 	width: 190px;
@@ -106,7 +106,7 @@ button {
 	border-radius: 5px;
 }
 
-#hint img {
+.hint img {
 	vertical-align: bottom;
 }
 
