@@ -60,7 +60,11 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 			},
 			function(response)
 			{
-				updateIcon(response.status, tabId);
+				if (chrome.runtime.lastError) {
+					console.log("Error: ", chrome.runtime.lastError);
+				} else {
+					updateIcon(response.status, tabId);
+				}
 			}
 		);
 	}
