@@ -80,6 +80,11 @@ chrome.commands.onCommand.addListener(function(command)
 		// Fetch the active tab
 		chrome.tabs.query({ active: true, windowId: chrome.windows.WINDOW_ID_CURRENT }, function(tabs)
 		{
+			// Do nothing when there is no active tab atm
+			if (tabs.length == 0) {
+				return;
+			}
+
 			// Get the current state
 			chrome.tabs.sendMessage(
 				tabs[0].id,
