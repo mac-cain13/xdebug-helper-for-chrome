@@ -1,9 +1,9 @@
 var xdebug = (function() {
 	// Set a cookie
-	function setCookie(name, value, hours)
+	function setCookie(name, value, days)
 	{
 		var exp = new Date();
-		exp.setTime(exp.getTime() + (hours * 60 * 60 * 1000));
+		exp.setTime(exp.getTime() + (days * 24 * 60 * 60 * 1000));
 		document.cookie = name + "=" + value + "; expires=" + exp.toGMTString() + "; path=/";
 	}
 
@@ -35,7 +35,7 @@ var xdebug = (function() {
 	// Remove a cookie
 	function deleteCookie(name)
 	{
-		setCookie(name, null, -60);
+		setCookie(name, null, -1);
 	}
 
 	// Public methods
@@ -114,7 +114,7 @@ var xdebug = (function() {
 			if (status == 1)
 			{
 				// Set debugging on
-				setCookie("XDEBUG_SESSION", idekey, 24);
+				setCookie("XDEBUG_SESSION", idekey, 365);
 				deleteCookie("XDEBUG_PROFILE");
 				deleteCookie("XDEBUG_TRACE");
 			}
@@ -122,7 +122,7 @@ var xdebug = (function() {
 			{
 				// Set profiling on
 				deleteCookie("XDEBUG_SESSION");
-				setCookie("XDEBUG_PROFILE", pt, 24);
+				setCookie("XDEBUG_PROFILE", pt, 365);
 				deleteCookie("XDEBUG_TRACE");
 
 			}
@@ -131,7 +131,7 @@ var xdebug = (function() {
 				// Set tracing on
 				deleteCookie("XDEBUG_SESSION");
 				deleteCookie("XDEBUG_PROFILE");
-				setCookie("XDEBUG_TRACE", tt, 24);
+				setCookie("XDEBUG_TRACE", tt, 365);
 			}
 			else
 			{
