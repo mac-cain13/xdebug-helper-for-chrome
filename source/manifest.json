@@ -1,5 +1,5 @@
 {
-	"name": "Xdebug helper - DEV",
+	"name": "Xdebug helper",
 	"description": "Easy debugging, profiling and tracing extension for Xdebug",
 	"version": "1.5",
 	"author": "Mathijs Kadijk",
@@ -32,15 +32,19 @@
 	"commands": {
 		"_execute_page_action": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+X"
+				"default": "Ctrl+Shift+X",
+				"windows": "Ctrl+Shift+X",
+				"mac": "Command+Shift+X"
 			},
 			"description": "Open popup to toggle state"
 		},
 		"toggle_debug_action": {
 			"suggested_key": {
-				"default": "Alt+Shift+X"
+				"default": "Alt+Shift+X",
+				"windows": "Alt+Shift+X",
+				"mac": "Alt+Shift+X"
 			},
-			"description": "Toggle between the debug and idle state"
+			"description": "Toggle between the debug states"
 		}
 	}
 }
