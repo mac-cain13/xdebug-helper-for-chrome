@@ -43,13 +43,6 @@ body {
 	font-size: 0.95em;
 }
 
-button {
-	float: right;
-	margin: 5px;
-	font-size: 1.25em;
-	color: rgba(27, 54, 23, 0.99);
-}
-
 .contentTxt {
 	margin-bottom: 5px;
 }
@@ -62,18 +55,6 @@ button {
 	vertical-align: bottom;
 	width: 16px;
 	height: 16px;
-}
-
-#addButton, #removeButton, #saveButton {
-	vertical-align: middle;
-}
-
-#siteBox {
-	width: 205px;
-}
-
-#newSite {
-	width: 200px;
 }
 
 #content, #footer {

@@ -8,8 +8,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 	}
 
 	// Prep some variables
-	var sites = [],
-		ideKey = "XDEBUG_ECLIPSE",
+	var ideKey = "XDEBUG_ECLIPSE",
 		match = true,
 		traceTrigger = ideKey,
 		profileTrigger = ideKey,
@@ -18,11 +17,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 	// Check if localStorage is available and get the settings out of it
 	if (localStorage)
 	{
-		if (localStorage["sites"])
-		{
-			sites = JSON.parse(localStorage["sites"]);
-		}
-
 		if (localStorage["xdebugIdeKey"])
 		{
 			ideKey = localStorage["xdebugIdeKey"];
@@ -39,32 +33,24 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 		}
 	}
 
-	// Get the current domain out of the tab URL and check if it matches anything in the sites array
-	domain = tab.url.match(/:\/\/(.[^\/]*)/)[1];
-	match = isValueInArray(sites, domain);
-
-	// Check if we have a match or don't need to match at all
-	if ( (domain != null && match) || sites.length === 0)
-	{
-		// Request the current status and update the icon accordingly
-		chrome.tabs.sendMessage(
-			tabId,
-			{
-				cmd: "getStatus",
-				idekey: ideKey,
-				traceTrigger: traceTrigger,
-				profileTrigger: profileTrigger
-			},
-			function(response)
-			{
-				if (chrome.runtime.lastError) {
-					console.log("Error: ", chrome.runtime.lastError);
-				} else {
-					updateIcon(response.status, tabId);
-				}
+	// Request the current status and update the icon accordingly
+	chrome.tabs.sendMessage(
+		tabId,
+		{
+			cmd: "getStatus",
+			idekey: ideKey,
+			traceTrigger: traceTrigger,
+			profileTrigger: profileTrigger
+		},
+		function(response)
+		{
+			if (chrome.runtime.lastError) {
+				console.log("Error: ", chrome.runtime.lastError);
+			} else {
+				updateIcon(response.status, tabId);
 			}
-		);
-	}
+		}
+	);
 });
 
 chrome.commands.onCommand.addListener(function(command)
