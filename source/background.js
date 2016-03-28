@@ -11,6 +11,8 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 	var sites = [],
 		ideKey = "XDEBUG_ECLIPSE",
 		match = true,
+		tt = ideKey,
+		pt = ideKey,
 		domain;
 
 	// Check if localStorage is available and get the settings out of it
@@ -24,6 +26,16 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 		if (localStorage["xdebugIdeKey"])
 		{
 			ideKey = localStorage["xdebugIdeKey"];
+		}
+
+		if (localStorage["xdebugTraceTrigger"])
+		{
+			tt = localStorage["xdebugTraceTrigger"];
+		}
+
+		if (localStorage["xdebugProfileTrigger"])
+		{
+			pt = localStorage["xdebugProfileTrigger"];
 		}
 	}
 
@@ -42,11 +54,17 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 			tabId,
 			{
 				cmd: "getStatus",
-				idekey: ideKey
+				idekey: ideKey,
+				tt: tt,
+				pt: pt
 			},
 			function(response)
 			{
-				updateIcon(response.status, tabId);
+				if (chrome.runtime.lastError) {
+					console.log("Error: ", chrome.runtime.lastError);
+				} else {
+					updateIcon(response.status, tabId);
+				}
 			}
 		);
 	}
@@ -57,11 +75,23 @@ chrome.commands.onCommand.addListener(function(command)
 	if ('toggle_debug_action' == command)
 	{
 		var ideKey = "XDEBUG_ECLIPSE";
+		var tt = ideKey;
+		var pt = ideKey;
 
 		// Check if localStorage is available and get the settings out of it
 		if (localStorage && localStorage["xdebugIdeKey"])
 		{
 			ideKey = localStorage["xdebugIdeKey"];
+		}
+
+		if (localStorage && localStorage["xdebugTraceTrigger"])
+		{
+			tt = localStorage["xdebugTraceTrigger"];
+		}
+
+		if (localStorage && localStorage["xdebugProfileTrigger"])
+		{
+			pt = localStorage["xdebugProfileTrigger"];
 		}
 
 		// Fetch the active tab
@@ -72,7 +102,9 @@ chrome.commands.onCommand.addListener(function(command)
 				tabs[0].id,
 				{
 					cmd: "getStatus",
-					idekey: ideKey
+					idekey: ideKey,
+					tt: tt,
+					pt: pt
 				},
 				function(response)
 				{
@@ -84,7 +116,9 @@ chrome.commands.onCommand.addListener(function(command)
 						{
 							cmd: "setStatus",
 							status: newState,
-							idekey: ideKey
+							idekey: ideKey,
+							tt: tt,
+							pt: pt
 						},
 						function(response)
 						{

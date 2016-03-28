@@ -1,10 +1,22 @@
 $(function() {
 	var ideKey = "XDEBUG_ECLIPSE";
+	var tt = ideKey;
+	var pt = ideKey;
 
 	// Check if localStorage is available and get the ideKey out of it if any
 	if (localStorage && localStorage["xdebugIdeKey"])
 	{
 		ideKey = localStorage["xdebugIdeKey"];
+	}
+
+	if (localStorage && localStorage["xdebugTraceTrigger"])
+	{
+		tt = localStorage["xdebugTraceTrigger"];
+	}
+
+	if (localStorage && localStorage["xdebugProfileTrigger"])
+	{
+		pt = localStorage["xdebugProfileTrigger"];
 	}
 
 	// Request the current state from the active tab
@@ -14,7 +26,9 @@ $(function() {
 				tabs[0].id,
 				{
 					cmd: "getStatus",
-					idekey: ideKey
+					idekey: ideKey,
+					tt: tt,
+					pt: pt
 				},
 				function(response)
 				{
@@ -36,7 +50,9 @@ $(function() {
 				{
 					cmd: "setStatus",
 					status: newStatus,
-					idekey: ideKey
+					idekey: ideKey,
+					tt : tt,
+					pt : pt
 				},
 				function(response)
 				{
