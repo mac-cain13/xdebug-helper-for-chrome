@@ -46,9 +46,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 	// Check if we have a match or don't need to match at all
 	if ( (domain != null && match) || sites.length === 0)
 	{
-		// Show the pageAction
-		chrome.pageAction.show(tabId);
-
 		// Request the current status and update the icon accordingly
 		chrome.tabs.sendMessage(
 			tabId,
@@ -155,13 +152,13 @@ function updateIcon(status, tabId)
 	}
 
 	// Update title
-	chrome.pageAction.setTitle({
+	chrome.browserAction.setTitle({
 		tabId: tabId,
 		title: title
 	});
 
 	// Update image
-	chrome.pageAction.setIcon({
+	chrome.browserAction.setIcon({
 		tabId: tabId,
 		path: image
 	});

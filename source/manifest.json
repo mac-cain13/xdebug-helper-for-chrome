@@ -15,7 +15,7 @@
 
 	"options_page": "options.html",
 
-	"page_action": {
+	"browser_action": {
 		"default_icon": "images/bug-gray.png",
 		"default_title": "Debugging, profiling & tracing disabled",
 		"default_popup" : "popup.html"
@@ -30,7 +30,7 @@
 	},
 
 	"commands": {
-		"_execute_page_action": {
+		"_execute_browser_action": {
 			"suggested_key": {
 				"default": "Ctrl+Shift+X",
 				"windows": "Ctrl+Shift+X",
