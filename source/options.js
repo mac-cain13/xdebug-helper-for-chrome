@@ -35,17 +35,17 @@ function restore_options()
 	$('#idekey').val(idekey);
 
 	// Restore Trace Triggers
-	var tt = localStorage["xdebugTraceTrigger"];
-	if (tt !== null)	{
-		$("#tracetrigger").val(tt);
+	var traceTrigger = localStorage["xdebugTraceTrigger"];
+	if (traceTrigger !== null)	{
+		$("#tracetrigger").val(traceTrigger);
 	} else {
 		$("#tracetrigger").val(null);
 	}
 
 	// Restore Profile Triggers
-	var pt = localStorage["xdebugProfileTrigger"];
-	if (pt !== null)	{
-		$("#profiletrigger").val(pt);
+	var profileTrigger = localStorage["xdebugProfileTrigger"];
+	if (profileTrigger !== null)	{
+		$("#profiletrigger").val(profileTrigger);
 	} else {
 		$("#profiletrigger").val(null);
 	}

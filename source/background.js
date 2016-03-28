@@ -11,8 +11,8 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 	var sites = [],
 		ideKey = "XDEBUG_ECLIPSE",
 		match = true,
-		tt = ideKey,
-		pt = ideKey,
+		traceTrigger = ideKey,
+		profileTrigger = ideKey,
 		domain;
 
 	// Check if localStorage is available and get the settings out of it
@@ -30,12 +30,12 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 
 		if (localStorage["xdebugTraceTrigger"])
 		{
-			tt = localStorage["xdebugTraceTrigger"];
+			traceTrigger = localStorage["xdebugTraceTrigger"];
 		}
 
 		if (localStorage["xdebugProfileTrigger"])
 		{
-			pt = localStorage["xdebugProfileTrigger"];
+			profileTrigger = localStorage["xdebugProfileTrigger"];
 		}
 	}
 
@@ -55,8 +55,8 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 			{
 				cmd: "getStatus",
 				idekey: ideKey,
-				tt: tt,
-				pt: pt
+				traceTrigger: traceTrigger,
+				profileTrigger: profileTrigger
 			},
 			function(response)
 			{
@@ -75,8 +75,8 @@ chrome.commands.onCommand.addListener(function(command)
 	if ('toggle_debug_action' == command)
 	{
 		var ideKey = "XDEBUG_ECLIPSE";
-		var tt = ideKey;
-		var pt = ideKey;
+		var traceTrigger = ideKey;
+		var profileTrigger = ideKey;
 
 		// Check if localStorage is available and get the settings out of it
 		if (localStorage && localStorage["xdebugIdeKey"])
@@ -86,12 +86,12 @@ chrome.commands.onCommand.addListener(function(command)
 
 		if (localStorage && localStorage["xdebugTraceTrigger"])
 		{
-			tt = localStorage["xdebugTraceTrigger"];
+			traceTrigger = localStorage["xdebugTraceTrigger"];
 		}
 
 		if (localStorage && localStorage["xdebugProfileTrigger"])
 		{
-			pt = localStorage["xdebugProfileTrigger"];
+			profileTrigger = localStorage["xdebugProfileTrigger"];
 		}
 
 		// Fetch the active tab
@@ -103,8 +103,8 @@ chrome.commands.onCommand.addListener(function(command)
 				{
 					cmd: "getStatus",
 					idekey: ideKey,
-					tt: tt,
-					pt: pt
+					traceTrigger: traceTrigger,
+					profileTrigger: profileTrigger
 				},
 				function(response)
 				{
@@ -117,8 +117,8 @@ chrome.commands.onCommand.addListener(function(command)
 							cmd: "setStatus",
 							status: newState,
 							idekey: ideKey,
-							tt: tt,
-							pt: pt
+							traceTrigger: traceTrigger,
+							profileTrigger: profileTrigger
 						},
 						function(response)
 						{

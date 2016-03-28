@@ -45,35 +45,35 @@ var xdebug = (function() {
 		{
 			var newStatus,
 				idekey = "XDEBUG_ECLIPSE",
-				tt = null,
-				pt = null;
+				traceTrigger = null,
+				profileTrigger = null;
 
 			// Use the IDE key from the request, if any is given
 			if (request.idekey)
 			{
 				idekey = request.idekey;
 			}
-			if (request.tt)
+			if (request.traceTrigger)
 			{
-				tt = request.tt;
+				traceTrigger = request.traceTrigger;
 			}
-			if (request.pt)
+			if (request.profileTrigger)
 			{
-				pt = request.pt;
+				profileTrigger = request.profileTrigger;
 			}
 
 			// Execute the requested command
 			if (request.cmd == "getStatus")
 			{
-				newStatus = exposed.getStatus(idekey, tt, pt);
+				newStatus = exposed.getStatus(idekey, traceTrigger, profileTrigger);
 			}
 			else if (request.cmd == "toggleStatus")
 			{
-				newStatus = exposed.toggleStatus(idekey, tt, pt);
+				newStatus = exposed.toggleStatus(idekey, traceTrigger, profileTrigger);
 			}
 			else if (request.cmd == "setStatus")
 			{
-				newStatus = exposed.setStatus(request.status, idekey, tt, pt);
+				newStatus = exposed.setStatus(request.status, idekey, traceTrigger, profileTrigger);
 			}
 
 			// Respond with the current status
@@ -81,7 +81,7 @@ var xdebug = (function() {
 		},
 
 		// Get current state
-		getStatus : function(idekey, tt, pt)
+		getStatus : function(idekey, traceTrigger, profileTrigger)
 		{
 			var status = 0;
 
@@ -89,11 +89,11 @@ var xdebug = (function() {
 			{
 				status = 1;
 			}
-			else if (getCookie("XDEBUG_PROFILE") == pt)
+			else if (getCookie("XDEBUG_PROFILE") == profileTrigger)
 			{
 				status = 2;
 			}
-			else if (getCookie("XDEBUG_TRACE") == tt)
+			else if (getCookie("XDEBUG_TRACE") == traceTrigger)
 			{
 				status = 3;
 			}
@@ -102,14 +102,14 @@ var xdebug = (function() {
 		},
 
 		// Toggle to the next state
-		toggleStatus : function(idekey, tt, pt)
+		toggleStatus : function(idekey, traceTrigger, profileTrigger)
 		{
-			var nextStatus = (exposed.getStatus(idekey, tt, pt) + 1) % 4;
-			return exposed.setStatus(nextStatus, idekey, tt, pt);
+			var nextStatus = (exposed.getStatus(idekey, traceTrigger, profileTrigger) + 1) % 4;
+			return exposed.setStatus(nextStatus, idekey, traceTrigger, profileTrigger);
 		},
 
 		// Set the state
-		setStatus : function(status, idekey, tt, pt)
+		setStatus : function(status, idekey, traceTrigger, profileTrigger)
 		{
 			if (status == 1)
 			{
@@ -122,7 +122,7 @@ var xdebug = (function() {
 			{
 				// Set profiling on
 				deleteCookie("XDEBUG_SESSION");
-				setCookie("XDEBUG_PROFILE", pt, 365);
+				setCookie("XDEBUG_PROFILE", profileTrigger, 365);
 				deleteCookie("XDEBUG_TRACE");
 
 			}
@@ -131,7 +131,7 @@ var xdebug = (function() {
 				// Set tracing on
 				deleteCookie("XDEBUG_SESSION");
 				deleteCookie("XDEBUG_PROFILE");
-				setCookie("XDEBUG_TRACE", tt, 365);
+				setCookie("XDEBUG_TRACE", traceTrigger, 365);
 			}
 			else
 			{
@@ -142,7 +142,7 @@ var xdebug = (function() {
 			}
 
 			// Return the new status
-			return exposed.getStatus(idekey, tt, pt);
+			return exposed.getStatus(idekey, traceTrigger, profileTrigger);
 		}
 	};
 
