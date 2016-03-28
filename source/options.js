@@ -18,11 +18,12 @@ function restore_options()
 	if (idekey == "XDEBUG_ECLIPSE" || idekey == "netbeans-xdebug" || idekey == "macgdbp" || idekey == "PHPSTORM")
 	{
 		$("#ide").val(idekey);
+		$("#idekey").prop('disabled', true);
 	}
 	else
 	{
 		$("#ide").val("null");
-		$("#customkey").fadeIn();
+		$("#idekey").prop('disabled', false);
 	}
 	$('#idekey').val(idekey);
 
@@ -49,14 +50,14 @@ $(function()
 	{
 		if ($("#ide").val() != "null")
 		{
-			$("#customkey").fadeOut();
+			$("#idekey").prop('disabled', true);
 			$("#idekey").val($("#ide").val());
 
 			save_options();
 		}
 		else
 		{
-			$("#customkey").fadeIn();
+			$("#idekey").prop('disabled', false);
 		}
 	});
 
