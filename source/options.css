@@ -1,103 +1,83 @@
-* {
-	font-family: Arial, Helvetica, sans-serif;
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.4em;
+  background-color: #e2e1e0;
 }
 
 ::selection {
-	background: #64d153;
-	color: #fff;
-	text-shadow: none;
-}
-
-h1, h2, h3 {
-	font-family: Georgia, 'Times New Roman', Times, serif;
-	margin-bottom: -5px;
-}
-
-h3 {
-	background-color: rgba(61, 167, 41, 0.48);
-	color: rgba(27, 54, 23, 0.99);
-	padding: 5px;
-}
-
-h1 {
-	margin: 0 0 -15px 0;
+  background: #4285f4;
+  color: #fff;
+  text-shadow: none;
 }
 
 a {
-	color: inherit;
-	text-decoration: inherit;
-}
-
-a span {
-	text-decoration: underline;
-}
-
-a.txtlink {
-	text-decoration: none;
-	border-bottom: 1px dotted #356816;
-	color: #356816;
-}
-
-body {
-	background-color: #eee;
-	font-size: 0.95em;
+  text-decoration: none;
+  color: #4285f4;
 }
 
 .contentTxt {
-	margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 #heading {
-	text-align: right;
+  background-color: #4285f4;
+  margin: -20px -20px 20px;
+  color: #ffffff;
+  padding: 20px;
 }
 
 .inlineicon {
-	vertical-align: bottom;
-	width: 16px;
-	height: 16px;
+  vertical-align: bottom;
+  width: 16px;
+  height: 16px;
 }
 
 #content, #footer {
-	width: 400px;
-	padding: 7px;
-	margin-left: auto;
-	margin-right: auto;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #content {
-	border: 5px solid #64d153;
-	background-color: #fff;
-	border-radius: 7px;
+  background: #fff;
+  border-radius: 2px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 #footer {
-	text-align: right;
+  border-top: 1px solid #cccccc;
+  padding: 20px;
+  margin: 0 -20px;
 }
 
 #footer img {
-	margin-right: -7px;
+  margin-right: -7px;
 }
 
 .hint {
-	font-size: 0.8em;
-	padding: 7px;
-	width: 190px;
-	text-align: center;
-	background-color: rgb(251, 242, 185);
-	border-radius: 5px;
+  display: inline-block;
+  margin: 10px 0;
+  color: #ffffff;
+  padding: 10px;
+  background-color: #4285f4;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
 
 .hint img {
-	vertical-align: bottom;
+  vertical-align: bottom;
 }
 
 .contribute {
-	font-size: 10px;
-	color: #808080;
-	float: left;
-	text-decoration: none;
+  font-size: 10px;
+  color: #808080;
+  float: left;
+  text-decoration: none;
 }
 
 .contribute span {
-	text-decoration: underline;
+  text-decoration: underline;
 }
