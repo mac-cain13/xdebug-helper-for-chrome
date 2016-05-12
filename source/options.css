@@ -81,3 +81,27 @@ a {
 .contribute span {
   text-decoration: underline;
 }
+
+.color--green {
+  color: #4CAF50;
+}
+
+.color--blue {
+  color: #039BE5;
+}
+
+.color--deep-purple {
+  color: #673AB7;
+}
+
+.color--gray {
+  color: #6D6D6D;
+}
+
+.material-icons {
+  font-size: 18px;
+  line-height: 0;
+  position: relative;
+  top: 4px;
+  margin-right: 5px;
+}

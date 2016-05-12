@@ -1,53 +1,85 @@
+html,
 body {
-	font-family: Arial;
-	font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  line-height: 1.4em;
 }
 
 .togglelist {
-	list-style: none;
-	padding-left: 0;
-	margin: 0;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
 
 .togglelist li a {
-	display: block;
-	min-width: 70px;
-	line-height: 16px;
-	margin: 3px auto;
-	padding: 6px;
-	background-color: #eee;
-	color: #333;
-	text-decoration: none;
+  display: block;
+  min-width: 70px;
+  line-height: 16px;
+  margin: 3px auto;
+  padding: 10px 20px;
+  background-color: #eee;
+  color: #000000;
+  text-decoration: none;
+}
+
+.togglelist li a .material-icons {
+  font-size: 18px;
+  line-height: 0;
+  position: relative;
+  top: 4px;
+  margin-right: 5px;
 }
 
 .togglelist li:first-child a {
-	margin-top: 0;
-	border-top-left-radius: 3px 3px;
-	border-top-right-radius: 3px 3px;
+  margin-top: 0;
+  border-top-left-radius: 3px 3px;
+  border-top-right-radius: 3px 3px;
 }
 
 .togglelist li:last-child a {
-	margin-bottom: 0;
-	border-bottom-left-radius: 3px 3px;
-	border-bottom-right-radius: 3px 3px;
+  margin-bottom: 0;
+  border-bottom-left-radius: 3px 3px;
+  border-bottom-right-radius: 3px 3px;
 }
 
-.togglelist li a:hover, .togglelist li a:focus {
-	background-color: #c8e8c3;
-	outline: none;
+.togglelist li a:hover, .togglelist li a:focus, .togglelist li a:hover .material-icons {
+  background-color: #4FC3F7;
+  color: #000;
+  outline: none;
 }
 
 .togglelist li .active {
-	background: #64d153;
+  background: #039BE5;
+  color: #ffffff;
+}
+
+.togglelist li .active .material-icons {
+  color: #ffffff;
 }
 
 .inlineicon {
-	vertical-align: middle;
-	min-width: 16px;
-	min-height: 16px;
-	padding: 0 6px 0 0;
+  vertical-align: middle;
+  min-width: 16px;
+  min-height: 16px;
+  padding: 0 6px 0 0;
 }
 
 .hotkey {
-	text-decoration: underline;
+  text-decoration: underline;
+}
+
+.color--green {
+  color: #4CAF50;
+}
+
+.color--blue {
+  color: #039BE5;
+}
+
+.color--deep-purple {
+  color: #673AB7;
+}
+
+.color--gray {
+  color: #6D6D6D;
 }
