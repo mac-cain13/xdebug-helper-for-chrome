@@ -4,6 +4,8 @@
 		<meta charset="utf-8">
 		<title>Xdebug helper</title>
 
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="options.css">
 
 		<script type="text/javascript" src="jquery.js"></script>
@@ -22,10 +24,10 @@
 				First install and configure <a target="_blank" class="txtlink" href="http://www.xdebug.org/docs/install">Xdebug</a>, then set your IDE key below. Now tell Xdebug to debug, profile or trace by clicking the little bug in the addressbar:
 			</p>
 			<p class="contentTxt">
-				<img class="inlineicon" alt="" src="images/bug-gray.png" /> Debugging, profiling &amp; tracing disabled<br />
-				<img class="inlineicon" alt="" src="images/bug.png" /> Debugging enabled<br />
-				<img class="inlineicon" alt="" src="images/clock.png" /> Profiling enabled<br />
-				<img class="inlineicon" alt="" src="images/script.png" /> Tracing enabled
+				<i class="material-icons color--gray">bug_report</i> Debugging, profiling &amp; tracing disabled<br />
+				<i class="material-icons color--green">bug_report</i> Debugging enabled<br />
+				<i class="material-icons color--blue">alarm</i> Profiling enabled<br />
+				<i class="material-icons color--deep-purple">find_in_page</i> Tracing enabled
 			</p>
 			<p class="hint"><img src="images/lightbulb.png" alt="Tip!" title="Tip!" /> Love hotkeys? Use Ctrl+Shift+X (Cmd+Shift+X on Mac) to open the popup, Alt+Shift+X to toggle the debugging state.</p>
 
@@ -58,12 +60,11 @@
 				<input type="text" id="profiletrigger" value="">
 				<button class="save-button">Save</button>
 			</p>
-		</div>
-
-		<div id="footer">
-			<a href="https://github.com/mac-cain13/xdebug-helper-for-chrome" class="contribute" target="_blank">
-				Feel free to submit ideas, bugs and pull request to our <span>Github project</span>
-			</a>
+			<footer id="footer">
+				<a href="https://github.com/mac-cain13/xdebug-helper-for-chrome" class="contribute" target="_blank">
+					Feel free to submit ideas, bugs and pull request to our <span>Github project</span>
+				</a>
+			</footer>
 		</div>
 	</body>
 </html>
