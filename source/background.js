@@ -62,19 +62,22 @@ chrome.commands.onCommand.addListener(function(command)
 		var profileTrigger = ideKey;
 
 		// Check if localStorage is available and get the settings out of it
-		if (localStorage && localStorage["xdebugIdeKey"])
+		if (localStorage)
 		{
-			ideKey = localStorage["xdebugIdeKey"];
-		}
+			if (localStorage["xdebugIdeKey"])
+			{
+				ideKey = localStorage["xdebugIdeKey"];
+			}
 
-		if (localStorage && localStorage["xdebugTraceTrigger"])
-		{
-			traceTrigger = localStorage["xdebugTraceTrigger"];
-		}
+			if (localStorage["xdebugTraceTrigger"])
+			{
+				traceTrigger = localStorage["xdebugTraceTrigger"];
+			}
 
-		if (localStorage && localStorage["xdebugProfileTrigger"])
-		{
-			profileTrigger = localStorage["xdebugProfileTrigger"];
+			if (localStorage["xdebugProfileTrigger"])
+			{
+				profileTrigger = localStorage["xdebugProfileTrigger"];
+			}
 		}
 
 		// Fetch the active tab

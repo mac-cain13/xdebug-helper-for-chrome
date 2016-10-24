@@ -4,19 +4,22 @@ $(function() {
 	var profileTrigger = ideKey;
 
 	// Check if localStorage is available and get the ideKey out of it if any
-	if (localStorage && localStorage["xdebugIdeKey"])
+	if (localStorage)
 	{
-		ideKey = localStorage["xdebugIdeKey"];
-	}
+		if (localStorage["xdebugIdeKey"])
+		{
+			ideKey = localStorage["xdebugIdeKey"];
+		}
 
-	if (localStorage && localStorage["xdebugTraceTrigger"])
-	{
-		traceTrigger = localStorage["xdebugTraceTrigger"];
-	}
+		if (localStorage["xdebugTraceTrigger"])
+		{
+			traceTrigger = localStorage["xdebugTraceTrigger"];
+		}
 
-	if (localStorage && localStorage["xdebugProfileTrigger"])
-	{
-		profileTrigger = localStorage["xdebugProfileTrigger"];
+		if (localStorage["xdebugProfileTrigger"])
+		{
+			profileTrigger = localStorage["xdebugProfileTrigger"];
+		}
 	}
 
 	// Request the current state from the active tab

@@ -45,8 +45,8 @@ var xdebug = (function() {
 		{
 			var newStatus,
 				idekey = "XDEBUG_ECLIPSE",
-				traceTrigger = null,
-				profileTrigger = null;
+				traceTrigger = idekey,
+				profileTrigger = idekey;
 
 			// Use the IDE key from the request, if any is given
 			if (request.idekey)
