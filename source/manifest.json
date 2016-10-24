@@ -1,7 +1,7 @@
 {
 	"name": "Xdebug helper",
 	"description": "Easy debugging, profiling and tracing extension for Xdebug",
-	"version": "1.6.0",
+	"version": "1.6.1",
 	"author": "Mathijs Kadijk",
 
 	"manifest_version": 2,
@@ -18,13 +18,7 @@
 	"options_page": "options.html",
 
 	"browser_action": {
-		"default_icon": {
-			"16": "images/icon--16.png",
-			"48": "images/icon--48.png",
-			"128": "images/icon--128.png",
-			"256": "images/icon--256.png",
-			"512": "images/icon--256.png"
-		},
+		"default_icon": "images/bug-gray.png",
 		"default_title": "Debugging, profiling & tracing disabled",
 		"default_popup" : "popup.html"
 	},
