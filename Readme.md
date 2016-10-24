@@ -5,6 +5,11 @@ Debugging, profiling and tracing PHP code with [Xdebug](http://xdebug.org/) is v
 Xdebug with cookies or adding POST/GET variables is way too hard. This extension will help you to enable/disable
 debugging, profiling and tracing of your PHP-code easily.
 
+Hotkeys
+-------
+Ctrl+Shift+X (Cmd+Shift+X on Mac) opens the popup.  
+Alt+Shift+X toggles the debugging state.
+
 How to install this extension?
 ------------------------------
 **Stable version:** Go to the [Google Chrome Web Store](https://chrome.google.com/webstore/detail/eadndfjplgieldjbigjakmdgkmoaaaoc)
