@@ -36,9 +36,6 @@ License
 The code of this project is licensed under the [MIT license](https://raw.github.com/mac-cain13/xdebug-helper-for-chrome/master/source/License)
 so you can use it in nearly every project you want to, commercial and non-commercial.
 
-The icons used are the famous [Famfamfam icons from Mark James](http://www.famfamfam.com/lab/icons/silk/)
-licensed under the [Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/).
-
 Special thanks
 --------------
 * [remailednet](http://blog.remailed.net) for creating the original [XDebug Enabler](https://chrome.google.com/webstore/detail/eippbhbeglgcphcjmpjcjinjamabeoln) for Chrome
