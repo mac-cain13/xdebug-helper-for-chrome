@@ -3,6 +3,7 @@ function save_options()
 	localStorage["xdebugIdeKey"] = document.getElementById("idekey").value;
 	localStorage["xdebugTraceTrigger"] = document.getElementById("tracetrigger").value;
 	localStorage["xdebugProfileTrigger"] = document.getElementById("profiletrigger").value;
+    localStorage.xdebugDisablePopup = document.getElementById('disable-popup').checked ? '1' : '0';
 }
 
 function restore_options()
@@ -42,6 +43,9 @@ function restore_options()
 	} else {
 		$("#profiletrigger").val(null);
 	}
+
+	// Restore Disable Popup
+    document.getElementById('disable-popup').checked = (localStorage.xdebugDisablePopup === '1') ? true : false;
 }
 
 $(function()
@@ -62,6 +66,9 @@ $(function()
 	});
 
 	$("#idekey").change(save_options);
+
+	// Save Disable Popup on change event
+	$('#disable-popup').change(save_options);
 
 	$('.save-button').click(save_options);
 
