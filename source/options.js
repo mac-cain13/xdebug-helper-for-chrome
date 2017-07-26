@@ -1,9 +1,12 @@
+// setTimeout() return value
+let disablePopupTimeout;
+
 function save_options()
 {
 	localStorage["xdebugIdeKey"] = document.getElementById("idekey").value;
 	localStorage["xdebugTraceTrigger"] = document.getElementById("tracetrigger").value;
 	localStorage["xdebugProfileTrigger"] = document.getElementById("profiletrigger").value;
-    localStorage.xdebugDisablePopup = document.getElementById('disable-popup').checked ? '1' : '0';
+	localStorage.xdebugDisablePopup = document.getElementById('disable-popup').checked ? '1' : '0';
 }
 
 function restore_options()
@@ -45,7 +48,7 @@ function restore_options()
 	}
 
 	// Restore Disable Popup
-    document.getElementById('disable-popup').checked = (localStorage.xdebugDisablePopup === '1') ? true : false;
+	document.getElementById('disable-popup').checked = (localStorage.xdebugDisablePopup === '1') ? true : false;
 }
 
 $(function()
@@ -67,10 +70,27 @@ $(function()
 
 	$("#idekey").change(save_options);
 
-	// Save Disable Popup on change event
-	$('#disable-popup').change(save_options);
+	// Persist Disable Popup on onChange event
+	$('#disable-popup').change(disablePopupChanged);
 
 	$('.save-button').click(save_options);
 
 	restore_options();
 });
+
+/**
+ * Disable Popup checkbox changed, persist it.
+ */
+function disablePopupChanged() {
+	const $disablePopupSaved = $('.disable-popup-saved');
+
+	$disablePopupSaved.addClass('show');
+
+	// First clear interval
+	clearInterval(disablePopupTimeout);
+	// Hide after 2 seconds
+	disablePopupTimeout = setTimeout(() => $disablePopupSaved.removeClass('show'), 2000);
+
+	// Persist
+	save_options();
+}
