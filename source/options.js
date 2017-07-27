@@ -95,6 +95,9 @@
 
 		// Persist
 		save_options();
+
+		// We need to reload the extension, because to hide the popup
+        chrome.extension.getBackgroundPage().window.location.reload(true);
 	}
 
 })();
