@@ -46,9 +46,11 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
 		{
 			if (chrome.runtime.lastError) {
 				console.log("Error: ", chrome.runtime.lastError);
-			} else {
-				updateIcon(response.status, tabId);
+				return;
 			}
+
+			// Update the icon
+			updateIcon(response.status, tabId);
 		}
 	);
 });
@@ -99,14 +101,14 @@ chrome.commands.onCommand.addListener(function(command)
 				},
 				function(response)
 				{
-					// If state is debugging (1) toggle to disabled (0), else toggle to debugging
-					var newState = (1 == response.status) ? 0 : 1;
+					// Get new status by current status
+                    const newStatus = getNewStatus(response.status);
 
 					chrome.tabs.sendMessage(
 						tabs[0].id,
 						{
 							cmd: "setStatus",
-							status: newState,
+							status: newStatus,
 							idekey: ideKey,
 							traceTrigger: traceTrigger,
 							profileTrigger: profileTrigger
@@ -123,13 +125,98 @@ chrome.commands.onCommand.addListener(function(command)
 	}
 });
 
+// Will not be called, if popup is disabled, so not needed to wrap this in a if statement
+chrome.browserAction.onClicked.addListener((tab) => {
+    var ideKey = "XDEBUG_ECLIPSE";
+    var traceTrigger = ideKey;
+    var profileTrigger = ideKey;
+
+    // Check if localStorage is available and get the settings out of it
+    if (localStorage)
+    {
+        if (localStorage["xdebugIdeKey"])
+        {
+            ideKey = localStorage["xdebugIdeKey"];
+        }
+
+        if (localStorage["xdebugTraceTrigger"])
+        {
+            traceTrigger = localStorage["xdebugTraceTrigger"];
+        }
+
+        if (localStorage["xdebugProfileTrigger"])
+        {
+            profileTrigger = localStorage["xdebugProfileTrigger"];
+        }
+    }
+
+    // Get the current state
+    chrome.tabs.sendMessage(
+        tab.id,
+        {
+            cmd: "getStatus",
+            idekey: ideKey,
+            traceTrigger: traceTrigger,
+            profileTrigger: profileTrigger
+        },
+        function(response)
+        {
+        	// Get new status by current status
+            const newStatus = getNewStatus(response.status);
+
+            chrome.tabs.sendMessage(
+                tab.id,
+                {
+                    cmd: "setStatus",
+                    status: newStatus,
+                    idekey: ideKey,
+                    traceTrigger: traceTrigger,
+                    profileTrigger: profileTrigger
+                },
+                function(response)
+                {
+                    // Update the icon
+                    updateIcon(response.status, tab.id);
+                }
+            );
+        }
+    );
+});
+
+/**
+ * Get new status by current status.
+ *
+ * @param {number} status - Current status from sendMessage() cmd: 'getStatus'.
+ *
+ * @returns {number}
+ */
+function getNewStatus(status) {
+    // Reset status, when trace or profile is selected and popup is disabled
+    if ((localStorage.xdebugDisablePopup === '1')
+        && ((status === 2) || (status === 3))
+    ) {
+        return 0;
+    }
+
+    // If state is debugging (1) toggle to disabled (0), else toggle to debugging
+	return (status === 1) ? 0 : 1;
+}
+
 function updateIcon(status, tabId)
 {
-	// Figure the correct title/image with the given state
-	var title = "Debugging, profiling & tracing disabled",
-		image = "images/bug-gray.png";
+	// Reset status, when trace or profile is selected and popup is disabled
+    if ((localStorage.xdebugDisablePopup === '1')
+		&& ((status === 2) || (status === 3))
+	) {
+        status = 0;
+    }
 
-	if (status == 1)
+    // Figure the correct title / image by the given state
+	let image = "images/bug-gray.png";
+    let title = (localStorage.xdebugDisablePopup === '1')
+		? 'Debugging disabled' : 'Debugging, profiling & tracing disabled';
+
+    if (status == 1)
 	{
 		title = "Debugging enabled";
 		image = "images/bug.png";
@@ -158,6 +245,10 @@ function updateIcon(status, tabId)
 	});
 }
 
+/**
+ * @deprecated
+ * @todo to remove silver
+ */
 function isValueInArray(arr, val)
 {
 	for (i = 0; i < arr.length; i++)
@@ -170,4 +261,15 @@ function isValueInArray(arr, val)
 	}
 
 	return false;
+}
+
+// Disable / Enable Popup by localStorage
+if (localStorage.xdebugDisablePopup === '1') {
+    chrome.browserAction.setPopup({
+        popup: '',
+    });
+} else {
+    chrome.browserAction.setPopup({
+        popup: 'popup.html',
+    });
 }

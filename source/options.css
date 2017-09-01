@@ -1,3 +1,4 @@
+/* Base styles */
 html,
 body {
   font-family: 'Roboto', sans-serif;
@@ -17,6 +18,17 @@ a {
   color: #4285f4;
 }
 
+/* Fade transition */
+.fade {
+  opacity: 0;
+  transition: opacity .15s linear;
+}
+
+.fade.show {
+  opacity: 1;
+}
+
+/* Page styles */
 .contentTxt {
   margin-bottom: 5px;
 }
@@ -104,4 +116,11 @@ a {
   position: relative;
   top: 4px;
   margin-right: 5px;
+}
+
+/* Disable Popup */
+.disable-popup-saved {
+  color: #5cb85c;
+  font-weight: bold;
+  margin-left: 5px;
 }
