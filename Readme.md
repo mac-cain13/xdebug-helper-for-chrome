@@ -31,6 +31,10 @@ B: [Submit a pull request](https://help.github.com/articles/using-pull-requests)
 
 _**Pro-tip:** Make sure to build upon the latest version of the code and keep pull request as small as possible. This makes your pull request easy to merge._
 
+Cool, but I use Firefox?!
+-------------------------
+There is also [Firefox version](https://github.com/BrianGilbert/xdebug-helper-for-firefox) created by BrianGilbert that you could try.
+
 License
 -------
 The code of this project is licensed under the [MIT license](https://raw.github.com/mac-cain13/xdebug-helper-for-chrome/master/source/License)
@@ -40,4 +44,4 @@ Special thanks
 --------------
 * [remailednet](http://blog.remailed.net) for creating the original [XDebug Enabler](https://chrome.google.com/webstore/detail/eippbhbeglgcphcjmpjcjinjamabeoln) for Chrome
 * [Guilherme Pim](https://github.com/pimguilherme) for contributing a Manifest v2 version
-* [All contributors](https://github.com/wrep/xdebug-helper-for-chrome/graphs/contributors) for taking the time to create a pull request
+* [All contributors](https://github.com/mac-cain13/xdebug-helper-for-chrome/graphs/contributors) for taking the time to create a pull request
